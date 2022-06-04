@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GeneroPost extends FormRequest
+class FilmePost extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,12 @@ class GeneroPost extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'unique',
-            'nome'
+            "titulo" => "required",
+            "genero_code" => "required",
+            "ano" => "required",
+            "sumario" => "required",
+            "trailer_url" => "required",
+            "cartaz_url" => "required"
         ];
     }
 }
