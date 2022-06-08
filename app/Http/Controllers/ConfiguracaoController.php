@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Configuracao;
 use Illuminate\Http\Request;
+use App\Http\Requests\ConfiguracaoPost;
 
 class ConfiguracaoController extends Controller
 {

@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Filme;
+use App\Models\Bilhete;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class FilmePolicy
+class BilhetePolicy
 {
     use HandlesAuthorization;
 
@@ -16,30 +16,21 @@ class FilmePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function before($user, $ability) {
-        if ($user->tipo == 'A') {
-            return true;
-        }
-        return false;
-    }
-
-     public function viewAny(User $user)
+    public function viewAny(User $user)
     {
-        //
-        return false;
+        return true;
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Bilhete  $bilhete
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Filme $filme)
+    public function view(User $user, Bilhete $bilhete)
     {
-        //
-        return false;
+        return $user->tipo == 'A' || $user->tipo == 'F' || ($user->tipo == 'C' && $bilhete->cliente->id = $user->id);
     }
 
     /**
@@ -51,43 +42,50 @@ class FilmePolicy
     public function create(User $user)
     {
         //
-        return false;
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Bilhete  $bilhete
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Filme $filme)
+    public function update(User $user, Bilhete $bilhete)
     {
         //
-        return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Bilhete  $bilhete
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Filme $filme)
+    public function delete(User $user, Bilhete $bilhete)
     {
         //
-        return false;
+    }
+
+    public function validar(User $user, Bilhete $bilhete)
+    {
+        return $user->tipo == 'F';
+    }
+
+    public function downloadBilhete(User $user, Bilhete $bilhete)
+    {
+        return $user->tipo == 'C' && $bilhete->cliente->id = $user->id;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Bilhete  $bilhete
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Filme $filme)
+    public function restore(User $user, Bilhete $bilhete)
     {
         //
     }
@@ -96,10 +94,10 @@ class FilmePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Bilhete  $bilhete
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Filme $filme)
+    public function forceDelete(User $user, Bilhete $bilhete)
     {
         //
     }

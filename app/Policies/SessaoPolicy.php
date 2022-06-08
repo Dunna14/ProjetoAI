@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Filme;
+use App\Models\Sessao;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class FilmePolicy
+class SessaoPolicy
 {
     use HandlesAuthorization;
 
@@ -25,21 +25,19 @@ class FilmePolicy
 
      public function viewAny(User $user)
     {
-        //
-        return false;
+        return $user->tipo == 'F';
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Sessao  $sessao
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Filme $filme)
+    public function view(User $user, Sessao $sessao)
     {
-        //
-        return false;
+        return $user->tipo == 'F';
     }
 
     /**
@@ -50,7 +48,6 @@ class FilmePolicy
      */
     public function create(User $user)
     {
-        //
         return false;
     }
 
@@ -58,12 +55,11 @@ class FilmePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Sessao  $sessao
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Filme $filme)
+    public function update(User $user, Sessao $sessao)
     {
-        //
         return false;
     }
 
@@ -71,12 +67,11 @@ class FilmePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Sessao  $sessao
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Filme $filme)
+    public function delete(User $user, Sessao $sessao)
     {
-        //
         return false;
     }
 
@@ -84,10 +79,10 @@ class FilmePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Sessao  $sessao
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Filme $filme)
+    public function restore(User $user, Sessao $sessao)
     {
         //
     }
@@ -96,10 +91,10 @@ class FilmePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Sessao  $sessao
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Filme $filme)
+    public function forceDelete(User $user, Sessao $sessao)
     {
         //
     }

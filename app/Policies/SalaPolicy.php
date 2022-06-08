@@ -16,9 +16,16 @@ class SalaPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
+    public function before($user, $ability) {
+        if ($user->tipo == 'A') {
+            return true;
+        }
+        return false;
+    }
+
     public function viewAny(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -30,7 +37,7 @@ class SalaPolicy
      */
     public function view(User $user, Sala $sala)
     {
-        //
+        return false;
     }
 
     /**
@@ -41,7 +48,7 @@ class SalaPolicy
      */
     public function create(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -53,7 +60,7 @@ class SalaPolicy
      */
     public function update(User $user, Sala $sala)
     {
-        //
+        return false;
     }
 
     /**
@@ -65,7 +72,7 @@ class SalaPolicy
      */
     public function delete(User $user, Sala $sala)
     {
-        //
+        return false;
     }
 
     /**

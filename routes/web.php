@@ -145,38 +145,36 @@ Route::middleware(['auth', 'verified','bloqueado'])->prefix('admin')->name('admi
         ->middleware('can:update,configuracao');
 
 
-//Rotas de recibos
-    Route::post('recibos', [ReciboController::class, 'store'])->name('recibos.store')
-    ->middleware('can:create,App\Models\Recibo');
-Route::get('recibos', [ReciboController::class, 'admin_index'])->name('recibos')
-    ->middleware('can:viewAny,App\Models\Recibo');
-Route::get('recibos/{recibo}', [ReciboController::class, 'show'])->name('recibos.show')
-    ->middleware('can:viewAny,App\Models\Recibo');
-Route::get('recibos/{recibo}/pdf', [ReciboController::class, 'retrievePDF'])->name('recibos.retrievepdf')
-    ->middleware('can:viewAny,App\Models\Recibo');
+    //Rotas de recibos
+        Route::post('recibos', [ReciboController::class, 'store'])->name('recibos.store')
+        ->middleware('can:create,App\Models\Recibo');
+    Route::get('recibos', [ReciboController::class, 'admin_index'])->name('recibos')
+        ->middleware('can:viewAny,App\Models\Recibo');
+    Route::get('recibos/{recibo}', [ReciboController::class, 'show'])->name('recibos.show')
+        ->middleware('can:viewAny,App\Models\Recibo');
+    Route::get('recibos/{recibo}/pdf', [ReciboController::class, 'retrievePDF'])->name('recibos.retrievepdf')
+        ->middleware('can:viewAny,App\Models\Recibo');
 
-//Rotas de bilhetes
-Route::get('bilhetes', [BilheteController::class, 'admin_index'])->name('bilhetes')
-    ->middleware('can:viewAny,App\Models\Bilhete');
-Route::get('bilhetes', [BilheteController::class, 'validar_invalidar'])->name('bilhetes.validar')
-    ->middleware('can:viewAny,App\Models\Bilhete');
-Route::get('bilhetes/{bilhete}', [BilheteController::class, 'show'])->name('bilhetes.show')
-    ->middleware('can:viewAny,App\Models\Bilhete');
-Route::get('bilhetes/{bilhete}/pdf', [BilheteController::class, 'downloadBilhetePDF'])->name('bilhetes.downloadbilhetepdf')
-    ->middleware('can:viewAny,App\Models\Bilhete');
-Route::get('bilhetes/{bilhete}/edit', [BilheteController::class, 'edit'])->name('bilhetes.edit')
-    ->middleware('can:view,bilhete');
-Route::put('bilhetes/{bilhete}/update', [BilheteController::class, 'update'])->name('bilhetes.update')
-    ->middleware('can:update,bilhete');
+    //Rotas de bilhetes
+    Route::get('bilhetes', [BilheteController::class, 'admin_index'])->name('bilhetes')
+        ->middleware('can:viewAny,App\Models\Bilhete');
+    Route::get('bilhetes', [BilheteController::class, 'validar_invalidar'])->name('bilhetes.validar')
+        ->middleware('can:viewAny,App\Models\Bilhete');
+    Route::get('bilhetes/{bilhete}', [BilheteController::class, 'show'])->name('bilhetes.show')
+        ->middleware('can:viewAny,App\Models\Bilhete');
+    Route::get('bilhetes/{bilhete}/pdf', [BilheteController::class, 'downloadBilhetePDF'])->name('bilhetes.downloadbilhetepdf')
+        ->middleware('can:viewAny,App\Models\Bilhete');
+    Route::get('bilhetes/{bilhete}/edit', [BilheteController::class, 'edit'])->name('bilhetes.edit')
+        ->middleware('can:view,bilhete');
+    Route::put('bilhetes/{bilhete}/update', [BilheteController::class, 'update'])->name('bilhetes.update')
+        ->middleware('can:update,bilhete');
 
-//Rotas de Gestão de estatisticas
-Route::get('estatisticas', [EstatisticaController::class, 'admin_index'])->name('estatisticas')
-    ->middleware('can:viewAny,App\Models\Estatistica');
+    //Rotas de Gestão de estatisticas
+    Route::get('estatisticas'   )->middleware('IsAdmin');
 
-//Rotas do carrinho
+    //Rotas do carrinho
 
-Route::get('carrinho/checkout', [CarrinhoController::class, 'checkout'])->name('carrinho.checkout')
-->middleware('isCliente');
+    Route::get('checkout   ')->middleware('IsCliente');
 
 });
 

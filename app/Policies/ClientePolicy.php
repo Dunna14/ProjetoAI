@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Filme;
+use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class FilmePolicy
+class ClientePolicy
 {
     use HandlesAuthorization;
 
@@ -16,30 +16,21 @@ class FilmePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function before($user, $ability) {
-        if ($user->tipo == 'A') {
-            return true;
-        }
-        return false;
-    }
-
-     public function viewAny(User $user)
+    public function viewAny(User $user)
     {
-        //
-        return false;
+        return $user->tipo=='A';
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Filme $filme)
+    public function view(User $user, Cliente $cliente)
     {
-        //
-        return false;
+        return $user->id == $cliente->id;
     }
 
     /**
@@ -50,44 +41,41 @@ class FilmePolicy
      */
     public function create(User $user)
     {
-        //
-        return false;
+        return true;
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Filme $filme)
+    public function update(User $user, Cliente $cliente)
     {
-        //
-        return false;
+        return $user->id == $cliente->id;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Filme $filme)
+    public function delete(User $user, Cliente $cliente)
     {
-        //
-        return false;
+        return $user->tipo=='A' && $cliente->id != $user->id;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Filme $filme)
+    public function restore(User $user, Cliente $cliente)
     {
         //
     }
@@ -96,10 +84,10 @@ class FilmePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Filme $filme)
+    public function forceDelete(User $user, Cliente $cliente)
     {
         //
     }

@@ -16,9 +16,16 @@ class GeneroPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function before($user, $ability) {
+        if ($user->tipo == 'A') {
+            return true;
+        }
+        return false;
+    }
+
+     public function viewAny(User $user)
     {
-        return true;
+        return false;
     }
 
     /**
@@ -30,7 +37,7 @@ class GeneroPolicy
      */
     public function view(User $user, Genero $genero)
     {
-        return true;
+        return false;
     }
 
     /**
@@ -41,7 +48,7 @@ class GeneroPolicy
      */
     public function create(User $user)
     {
-        return true;//
+        return false;//
     }
 
     /**
@@ -53,7 +60,7 @@ class GeneroPolicy
      */
     public function update(User $user, Genero $genero)
     {
-        return true;//
+        return false;//
     }
 
     /**
@@ -65,7 +72,7 @@ class GeneroPolicy
      */
     public function delete(User $user, Genero $genero)
     {
-        return true;//
+        return false;//
     }
 
     /**

@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Filme;
+use App\Models\Lugar;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class FilmePolicy
+class LugarPolicy
 {
     use HandlesAuthorization;
 
@@ -23,9 +23,8 @@ class FilmePolicy
         return false;
     }
 
-     public function viewAny(User $user)
+    public function viewAny(User $user)
     {
-        //
         return false;
     }
 
@@ -33,12 +32,11 @@ class FilmePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Lugar  $lugar
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Filme $filme)
+    public function view(User $user, Lugar $lugar)
     {
-        //
         return false;
     }
 
@@ -50,7 +48,6 @@ class FilmePolicy
      */
     public function create(User $user)
     {
-        //
         return false;
     }
 
@@ -58,12 +55,11 @@ class FilmePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Lugar  $lugar
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Filme $filme)
+    public function update(User $user, Lugar $lugar)
     {
-        //
         return false;
     }
 
@@ -71,12 +67,11 @@ class FilmePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Lugar  $lugar
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Filme $filme)
+    public function delete(User $user, Lugar $lugar)
     {
-        //
         return false;
     }
 
@@ -84,10 +79,10 @@ class FilmePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Lugar  $lugar
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Filme $filme)
+    public function restore(User $user, Lugar $lugar)
     {
         //
     }
@@ -96,10 +91,10 @@ class FilmePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Filme  $filme
+     * @param  \App\Models\Lugar  $lugar
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Filme $filme)
+    public function forceDelete(User $user, Lugar $lugar)
     {
         //
     }
