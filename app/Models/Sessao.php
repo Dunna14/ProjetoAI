@@ -9,7 +9,7 @@ class Sessao extends Model
 {
     use HasFactory;
 
-    protected $table = "Sessoes";
+    protected $table = "sessoes";
 
     protected $fillable = [
         'horario_inicio',
@@ -17,15 +17,15 @@ class Sessao extends Model
         'sala_id'
     ];
 
-    public function Bilhetes() {
+    public function bilhetes() {
         return $this->hasMany(Bilhete::class, 'sessao_id', 'id');
     }
 
-    public function Sala() {
+    public function sala() {
         return $this->belongsTo(Sala::class, 'sala_id', 'id') -> withTrashed();
     }
 
-    public function Filme() {
+    public function filme() {
         return $this->belongsTo(Filme::class, 'filme_id', 'id');
     }
 }

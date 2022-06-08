@@ -17,11 +17,11 @@ class Filme extends Model
         'trailer_url'
     ];
 
-    public function Sessoes() {
+    public function sessoes() {
         return $this->hasMany(Sessao::class, 'filme_id', 'id');
     }
 
-    public function Genero() {
+    public function genero() {
         return $this->belongsTo(Genero::class, 'genero_code', 'code') -> withTrashed();
     }
 }

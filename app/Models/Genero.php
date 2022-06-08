@@ -12,15 +12,15 @@ class Genero extends Model
 
     protected $primaryKey = "code";
     protected $keyType = "string";
-    protected $incrementing = false;
-    protected $timestamp = false;
+    public $incrementing = false;
+    public $timestamps = false;
 
     protected $fillable = [
-        'name',
+        'nome',
         'code'
     ];
 
-    public function Filme() {
+    public function filmes() {
         return $this->hasMany(Filme::class, 'genero_code', 'code');
     }
 }

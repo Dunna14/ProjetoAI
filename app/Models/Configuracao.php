@@ -9,8 +9,8 @@ class Configuracao extends Model
 {
     use HasFactory;
 
-    protected $table = "Configuracoes";
-    protected $timestamp = false;
+    protected $table = "configuracao";
+    public $timestamps = false;
 
     protected $fillable = [
         'preco_bilhete_sem_iva',
