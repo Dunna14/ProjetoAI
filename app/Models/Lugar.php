@@ -10,8 +10,8 @@ class Lugar extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = "Lugares";
-    protected $timestamp = false;
+    protected $table = "lugares";
+    public $timestamps = false;
 
     protected $fillable = [
         'fila',
@@ -19,11 +19,11 @@ class Lugar extends Model
         'sala_id'
     ];
 
-    public function Bilhete() {
+    public function bilhetes() {
         return $this->hasMany(Bilhete::class, 'lugar_id', 'id');
     }
 
-    public function Sala() {
+    public function sala() {
         return $this->belongsTo(Sala::class, 'bilhete_id', 'id') -> withTrashed();
     }
 }

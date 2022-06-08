@@ -18,7 +18,7 @@ class GeneroPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class GeneroPolicy
      */
     public function view(User $user, Genero $genero)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class GeneroPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;//
     }
 
     /**
@@ -53,7 +53,7 @@ class GeneroPolicy
      */
     public function update(User $user, Genero $genero)
     {
-        //
+        return true;//
     }
 
     /**
@@ -65,7 +65,7 @@ class GeneroPolicy
      */
     public function delete(User $user, Genero $genero)
     {
-        //
+        return true;//
     }
 
     /**

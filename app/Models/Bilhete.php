@@ -14,19 +14,19 @@ class Bilhete extends Model
         'lugar_id'     //opcional
     ];
 
-    public function Cliente() {
+    public function cliente() {
         return $this->belongsTo(Cliente::class, 'cliente_id', 'id') -> withTrashed();
     }
 
-    public function Recibo() {
+    public function recibo() {
         return $this->belongsTo(Recibo::class, 'recibo_id', 'id');
     }
 
-    public function Sessao() {
+    public function sessao() {
         return $this->belongsTo(Sessao::class, 'sessao_id', 'id');
     }
 
-    public function Lugar() {
+    public function lugar() {
         return $this->belongsTo(Lugar::class, 'lugar_id', 'id') -> withTrashed();
     }
 }

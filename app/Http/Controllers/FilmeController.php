@@ -16,7 +16,7 @@ class FilmeController extends Controller
 
         $qry = Filme::query();
         if ($genero) {
-            $qry->where('genero', $genero);
+            $qry->where('genero_code', $genero);
         }
         $filmes = $qry->paginate(10);
         $generos = Genero::pluck('nome', 'code');
@@ -27,22 +27,21 @@ class FilmeController extends Controller
     public function index(Request $request)
     {
         $generos = Genero::pluck('nome', 'code');
-        $genero = $request->query('genero', 'ACTION');
-        $ano = $request->ano ?? 1;
-        $discSem1 = Filme::where('genero', $genero)
-            ->where('ano', $ano)
-            //->where('semestre', 1)
-            ->get();
-        $discSem2 = Filme::where('genero', $genero)
-            ->where('ano', $ano)
-            //->where('semestre', 2)
-            ->get();
+        $genero = $request->query('genero', '');
+        $titulo = $request->titulo ?? '';
+        $filmes = Filme::query();
+        if ($genero){
+          $filmes = $filmes->where('genero', $genero);
+        }
+        if ($titulo){
+            $filmes = $filmes->where('titulo','like',"%$titulo%");
+          }
+        $filmes = $filmes->paginate(10);
         return view(
             'filmes.index',
-            compact('discSem1', 'discSem2', 'ano', 'genero', 'generos')
+            compact('filmes', 'titulo', 'genero', 'generos')
         );
     }
-
     public function create()
     {
         $filme = new Filme();
@@ -63,7 +62,7 @@ class FilmeController extends Controller
         $filme->save();
 
         if ($request->hasFile('cartaz_url')) {
-            $path = $request->foto->store('public/cartazes');
+            $path = $request->cartaz_url->store('public/cartazes');
             $filme->cartaz_url = basename($path);
         }
 
@@ -78,8 +77,8 @@ class FilmeController extends Controller
         $filme->save();
 
         if ($request->hasFile('cartaz_url')) {
-            Storage::delete('public/fotos/' . $filme->cartaz_url);
-            $path = $request->foto->store('public/cartazes');
+            Storage::delete('public/cartazes/' . $filme->cartaz_url);
+            $path = $request->cartaz_url->store('public/cartazes');
             $filme->cartaz_url = basename($path);
         }
 

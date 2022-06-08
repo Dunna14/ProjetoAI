@@ -19,6 +19,7 @@ class FilmePolicy
     public function viewAny(User $user)
     {
         //
+        return true;
     }
 
     /**
@@ -31,6 +32,7 @@ class FilmePolicy
     public function view(User $user, Filme $filme)
     {
         //
+        return true;
     }
 
     /**
@@ -42,6 +44,7 @@ class FilmePolicy
     public function create(User $user)
     {
         //
+        return true;
     }
 
     /**
@@ -54,6 +57,7 @@ class FilmePolicy
     public function update(User $user, Filme $filme)
     {
         //
+        return true;
     }
 
     /**
@@ -66,6 +70,7 @@ class FilmePolicy
     public function delete(User $user, Filme $filme)
     {
         //
+        return true;
     }
 
     /**

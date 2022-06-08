@@ -1,23 +1,23 @@
 @extends('layout_admin')
 
-@section('title', 'Disciplinas')
+@section('title', 'Filmes')
 
 @section('content')
     <div class="row mb-3">
         <div class="col-3">
-            @can('create', App\Models\Disciplina::class)
-                <a href="{{ route('admin.disciplinas.create') }}" class="btn btn-success" role="button"
+            @can('create', App\Models\Filme::class)
+                <a href="{{ route('admin.filmes.create') }}" class="btn btn-success" role="button"
                     aria-pressed="true">Nova
-                    Disciplina</a>
+                    Filme</a>
             @endcan
         </div>
         <div class="col-9">
-            <form method="GET" action="{{ route('admin.disciplinas') }}" class="form-group">
+            <form method="GET" action="{{ route('admin.filmes') }}" class="form-group">
                 <div class="input-group">
-                    <select class="custom-select" name="curso" id="inputCurso" aria-label="Curso">
-                        <option value="" {{ '' == old('curso', $curso) ? 'selected' : '' }}>Todos Cursos</option>
-                        @foreach ($cursos as $abr => $nome)
-                            <option value={{ $abr }} {{ $abr == old('curso', $curso) ? 'selected' : '' }}>
+                    <select class="custom-select" name="genero" id="inputgenero" aria-label="Genero">
+                        <option value="" {{ '' == old('genero', $genero) ? 'selected' : '' }}>Todos Generos</option>
+                        @foreach ($generos as $code =>$nome)
+                            <option value={{ $code }} {{ $code == old('genero', $genero) ? 'selected' : '' }}>
                                 {{ $nome }}</option>
                         @endforeach
                     </select>
@@ -31,39 +31,32 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Curso</th>
+                <th>Titulo</th>
+                <th>Sumario</th>
                 <th>Ano</th>
-                <th>Sem.</th>
-                <th>Abr.</th>
-                <th>Nome</th>
-                <th>ECTS</th>
-                <th>Horas</th>
-                <th>Opcional</th>
+                <th>Genero</th>
                 <th></th>
 
             </tr>
         </thead>
         <tbody>
-            @foreach ($disciplinas as $disc)
+            @foreach ($filmes as $filme)
                 <tr>
-                    <td>{{ $disc->curso }}</td>
-                    <td>{{ $disc->ano }}</td>
-                    <td>{{ $disc->semestre }}</td>
-                    <td>{{ $disc->abreviatura }}</td>
-                    <td>{{ $disc->nome }}</td>
-                    <td>{{ $disc->ECTS }}</td>
-                    <td>{{ $disc->horas }}</td>
-                    <td><i class="fas {{ $disc->opcional ? 'fa-check' : 'fa-times' }}"></i></td>
+                    <td>{{ $filme->titulo }}</td>
+                    <td>{{ $filme->sumario }}</td>
+                    <td>{{ $filme->ano }}</td>
+                    <td>{{ $filme->genero_code }}</td>
+                    <td><i class="fas {{ $filme ->opcional ? 'fa-check' : 'fa-times' }}"></i></td>
                     <td nowrap>
-                        @can('view', $disc)
-                            <a href="{{ route('admin.disciplinas.edit', ['disciplina' => $disc]) }}"
+                        @can('view', $filme)
+                            <a href="{{ route('admin.filmes.edit', ['filme' => $filme]) }}"
                                 class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                     class="fas fa-pen"></i></a>
                         @else
                             <span class="btn btn-secondary btn-sm disabled"><i class="fa fa-pen"></i></span>
                         @endcan
-                        @can('delete', $disc)
-                        <form action="{{ route('admin.disciplinas.destroy', ['disciplina' => $disc]) }}" method="POST"
+                        @can('delete', $filme)
+                        <form action="{{ route('admin.filmes.destroy', ['filme' => $filme]) }}" method="POST"
                             class='d-inline' onsubmit="return confirm('Tem a certeza que deseja apagar o registo?')">
                             @csrf
                             @method("DELETE")
@@ -77,5 +70,5 @@
             @endforeach
         </tbody>
     </table>
-    {{ $disciplinas->withQueryString()->links() }}
+    {{ $filmes->withQueryString()->links() }}
 @endsection

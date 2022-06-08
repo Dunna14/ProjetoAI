@@ -10,17 +10,17 @@ class Sala extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $timestamp = false;
+    public $timestamps = false;
 
     protected $fillable = [
         'nome',
     ];
 
-    public function Lugares() {
+    public function lugares() {
         return $this->hasMany(Lugar::class, 'sala_id', 'id');
     }
 
-    public function Sessoes() {
+    public function sessoes() {
         return $this->hasMany(Sessao::class, 'sala_id', 'id');
     }
 }

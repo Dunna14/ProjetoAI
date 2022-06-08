@@ -24,8 +24,8 @@ class GeneroPost extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'unique',
-            'nome'
+            'code' => 'sometimes|unique:generos,code,'.$this->genero_code.',code',
+            'nome' => 'required'
         ];
     }
 }
