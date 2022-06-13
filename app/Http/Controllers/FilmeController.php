@@ -27,16 +27,18 @@ class FilmeController extends Controller
     public function index(Request $request)
     {
         $generos = Genero::pluck('nome', 'code');
-        $genero = $request->query('genero', '');
+        $genero = $request->query('genero');
         $titulo = $request->titulo ?? '';
         $filmes = Filme::query();
+        
+        
         if ($genero){
-          $filmes = $filmes->where('genero', $genero);
+          $filmes = $filmes->where('genero_code', $genero);
         }
         if ($titulo){
             $filmes = $filmes->where('titulo','like',"%$titulo%");
           }
-        $filmes = $filmes->paginate(10);
+        $filmes = $filmes->paginate(25);
         return view(
             'filmes.index',
             compact('filmes', 'titulo', 'genero', 'generos')
