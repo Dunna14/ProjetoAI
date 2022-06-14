@@ -42,6 +42,7 @@
 </div>
 
 <br>
+
+{{$filmes->withQueryString()->links()}}
 <br>
-{{ $filmes->withQueryString()->links() }}
 @endsection

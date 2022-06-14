@@ -98,7 +98,39 @@
             overflow-y: auto;
             /* Scrollable contents if viewport is shorter than content. */
         }
+        .page-link {
+            border: none;
+    color: white;
+    margin: 0;
+    background-color: #1E293B; //your color
+    border-color: #1E293B; //your color
 
+}
+.page-link:hover {
+    color: white;
+    border: none;
+    background-color: #FB923C; //your color
+    border-color: #FB923C; //your color
+}
+
+.page-item.active .page-link {
+    border: none;
+    color: white;
+    background-color: #FB923C; //your color
+    border-color: #1E293B;
+    margin: 0;
+
+}
+
+
+.page-item.disabled .page-link {
+    border: none;
+    color: white;
+    background-color: #1E293B; //your color
+    border-color: #1E293B;
+    margin: 0;
+
+}
     </style>
 
     <script type="text/javascript">
