@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Filme;
 use App\Models\Genero;
+use App\Models\Sessao;
 use Illuminate\Http\Request;
 use App\Http\Requests\FilmePost;
 use Illuminate\Support\Facades\Storage;
@@ -94,8 +95,16 @@ class FilmeController extends Controller
     {
         $generos = Genero::pluck('nome', 'code');
         $genero = $request->query('genero');
+        $filme = Filme::find($filme->id);
+$sessoes = Sessao::query();
 
-        return view('filmes.show', compact('filme', 'generos', 'genero'));
+if ($filme){
+    $sessoes = $sessoes->where('filme_id', $filme->id);
+  }
+$sessoes = $sessoes->paginate(10);
+
+
+        return view('filmes.show', compact('filme', 'generos', 'genero','sessoes'));
     }
 
 
