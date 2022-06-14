@@ -21,7 +21,7 @@
                         </span></p>
 
 <div class="container">
-    <div class= "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+    <div class= "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
     @foreach ($filmes as $filme)
 
         <div class="mt-8">
