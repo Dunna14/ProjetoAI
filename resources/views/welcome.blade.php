@@ -1,10 +1,11 @@
 @extends('layout_website')
+@section('title', ' Welcome')
 @section('content')
 <div class="main-content flex flex-grow flex-col text-center mt-60">
 
                     <blockquote class="m font-semibold italic text-slate-900 self-center m-auto">
                     <p  class="text-9xl text-white">CINE<p>
-  <span class="before:block before:absolute before:-inset-1 text-9xl before:-skew-y-3 before:bg-pink-500 relative inline-block mb-16">
+  <span class="before:block before:absolute before:-inset-1 text-9xl before:-skew-y-3 before:bg-orange-400 relative inline-block mb-16">
     <span class="relative text-white">MAGIC</span>
   </span>
   <br>

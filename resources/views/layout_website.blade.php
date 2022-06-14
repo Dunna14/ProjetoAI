@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Dashboard</title>
-
+    <title> 🦦 Cinemagic - @yield('title') !</title>
+    <link rel="icon" type="image/x-icon" href="storage/favicon.ico">
+    
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -327,16 +328,11 @@
             <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
+            <div class="modal-content bg-slate-800">
+
                 <div class="modal-body text-center">
               
-                <h5 class="text-black" id="exampleModalLabel">Pretende sair?</h5>
+                <h5 class="text-white" id="exampleModalLabel">Pretende sair?</h5>
 
                 <br>
 

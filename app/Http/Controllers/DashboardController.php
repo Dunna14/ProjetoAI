@@ -8,6 +8,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        if (auth()->user()->tipo != 'A'){
+        return view('welcome');
+    }
+        
         return view('dashboard.index');
     }
 }

@@ -89,6 +89,16 @@ class FilmeController extends Controller
             ->with('alert-type', 'success');
     }
 
+
+    public function show(Request $request,Filme $filme)
+    {
+        $generos = Genero::pluck('nome', 'code');
+        $genero = $request->query('genero');
+
+        return view('filmes.show', compact('filme', 'generos', 'genero'));
+    }
+
+
     public function destroy(Filme $filme)
     {
         if (count($filme->filme_id)) {

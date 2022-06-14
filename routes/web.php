@@ -28,6 +28,8 @@ Auth::routes(['register'=>false,'verify' => true]); //Verificar
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('  ');
 
+
+
 Route::middleware(['auth', 'verified','bloqueado'])->prefix('admin')->name('admin.')->group(function () {
 
     // dashboard
@@ -180,6 +182,8 @@ Route::middleware(['auth', 'verified','bloqueado'])->prefix('admin')->name('admi
 });
 
 Route::get('filmes', [FilmeController::class, 'index'])->name('filmes.index');
+Route::get('filmes/{filme}', [FilmeController::class, 'show'])->name('filmes.show');
+
 Route::put('carrinho/{sessao}/{lugar}/addbilhete', [CarrinhoController::class, 'add_bilhete'])->name('carrinho.bilhete.add');
 Route::delete('carrinho/{bilhete}/destroyBilhete', [CarrinhoController::class, 'destroy_bilhete'])->name('carrinho.bilhete.destroy');
 Route::delete('carrinho/destroy', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
