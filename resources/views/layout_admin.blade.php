@@ -63,7 +63,7 @@
 
 			<!-- Nav Item -->
             <li class="nav-item {{Route::currentRouteName()=='admin.filmes'? 'active': ''}}">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('admin.filmes')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Filmes</span></a>
                 </li>

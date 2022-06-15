@@ -80,7 +80,7 @@ Comprar
 </table>
 </div>
 @else
-<p class="text-center text-white font-bold">Esta sessao nao tem filmes 😔 !</p>
+<p class="text-center text-white font-bold">Este filme nao tem sessoes 😔 !</p>
 @endif
 </div>
 {{$sessoes->withQueryString()->links()}}
