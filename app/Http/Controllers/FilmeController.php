@@ -96,12 +96,7 @@ class FilmeController extends Controller
         $generos = Genero::pluck('nome', 'code');
         $genero = $request->query('genero');
         $filme = Filme::find($filme->id);
-$sessoes = Sessao::query();
-
-if ($filme){
-    $sessoes = $sessoes->where('filme_id', $filme->id);
-  }
-$sessoes = $sessoes->paginate(10);
+        $sessoes = $filme->sessoes()->paginate(10);   
 
 
         return view('filmes.show', compact('filme', 'generos', 'genero','sessoes'));
