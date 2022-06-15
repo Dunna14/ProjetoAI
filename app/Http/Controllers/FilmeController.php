@@ -62,31 +62,31 @@ class FilmeController extends Controller
 
         $filme = new Filme();
         $filme->fill($request->validated());
-        $filme->save();
 
         if ($request->hasFile('cartaz_url')) {
             $path = $request->cartaz_url->store('public/cartazes');
             $filme->cartaz_url = basename($path);
         }
-
+        $filme->save();
         return redirect()->route('admin.filmes')
-            ->with('alert-msg', 'Filme "' . $filme->nome . '" foi criada com sucesso!')
+            ->with('alert-msg', 'Filme "' . $filme->titulo . '" foi criada com sucesso!')
             ->with('alert-type', 'success');
     }
 
     public function update(FilmePost $request, Filme $filme)
     {
         $filme->fill($request->validated());
-        $filme->save();
+
 
         if ($request->hasFile('cartaz_url')) {
             Storage::delete('public/cartazes/' . $filme->cartaz_url);
             $path = $request->cartaz_url->store('public/cartazes');
             $filme->cartaz_url = basename($path);
         }
+        $filme->save();
 
         return redirect()->route('admin.filmes')
-            ->with('alert-msg', 'Filme "' . $filme->nome . '" foi alterada com sucesso!')
+            ->with('alert-msg', 'Filme "' . $filme->titulo . '" foi alterada com sucesso!')
             ->with('alert-type', 'success');
     }
 

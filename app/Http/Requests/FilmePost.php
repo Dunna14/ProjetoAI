@@ -28,8 +28,7 @@ class FilmePost extends FormRequest
             "genero_code" => "required|exists:generos,code",
             "sumario" => "required",
             "ano" => "required",
-            "trailer_url" => "required|url",
-            "cartaz_url" => "required"
+            "trailer_url" => "required|url"
         ];
     }
 }

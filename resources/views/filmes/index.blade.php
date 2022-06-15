@@ -26,7 +26,7 @@
 
         <div class="mt-8">
             <a href="{{ route('filmes.show', ['filme' => $filme]) }}">
-            <img class="h-96 w-64 hover:opacity-75 transition ease-in-out duration-150" src="{{ asset('storage/cartazes/'. $filme->cartaz_url) }}">
+            <img class="h-96 w-64 hover:opacity-75 transition ease-in-out duration-150" src="{{ $filme->cartaz_url  ? asset('storage/cartazes/'. $filme->cartaz_url) : asset('img/default_cartaz.png')  }}">
             </a>
             <div>
                 <a href="{{ route('filmes.show', ['filme' => $filme]) }}" class="text-xl text-gray-100 mt-1 hover:text-gray:500">{{$filme->titulo}}</a>
