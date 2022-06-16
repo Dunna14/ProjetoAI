@@ -75,6 +75,13 @@
                     <span>Sessões</span></a>
                 </li>
 
+            <!-- Nav Item -->
+            <li class="nav-item {{Route::currentRouteName()=='admin.users'? 'active': ''}}">
+                <a class="nav-link" href="{{route('admin.users')}}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Users</span></a>
+                </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
