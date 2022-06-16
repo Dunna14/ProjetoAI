@@ -82,6 +82,13 @@
                     <span>Users</span></a>
                 </li>
 
+            <!-- Nav Item -->
+            <li class="nav-item {{Route::currentRouteName()=='admin.salas'? 'active': ''}}">
+                <a class="nav-link" href="{{route('admin.salas')}}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Salas</span></a>
+                </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

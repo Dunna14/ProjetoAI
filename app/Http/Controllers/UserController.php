@@ -24,6 +24,13 @@ class UserController extends Controller
 
     }
 
+    public function show(Request $request, User $user) {
+        $user = User::find($user->id);
+
+
+        return view('users.show', compact('user'));
+    }
+
     public function edit_password() {
         return view('auth.password_change');
     }

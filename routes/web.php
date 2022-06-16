@@ -181,11 +181,14 @@ Route::middleware(['auth', 'verified','bloqueado'])->prefix('admin')->name('admi
 
 });
 
+Route::get('users/{user}', [UserController::class, 'show'])->name('user.show');
+
 Route::get('filmes', [FilmeController::class, 'index'])->name('filmes.index');
 Route::get('filmes/{filme}', [FilmeController::class, 'show'])->name('filmes.show');
 
-Route::get('carrinho/{user}', [CarrinhoController::class, 'index'])->name('carrinho.index');
-Route::post('carrinho/store', [CarrinhoController::class, 'store'])->name('carrinho.store');
-Route::put('carrinho/{sessao}/{lugar}/addbilhete', [CarrinhoController::class, 'store_sessao'])->name('carrinho.store');
-Route::delete('carrinho/{bilhete}/destroyBilhete', [CarrinhoController::class, 'destroy_bilhete'])->name('carrinho.bilhete.destroy');
-Route::delete('carrinho/destroy', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
+Route::get('carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
+Route::post('carrinho/bilhetes/{bilhete}', [CarrinhoController::class, 'store_bilhete'])->name('carrinho.bilhete.store');
+Route::put('carrinho/bilhetes/{bilhete}', [CarrinhoController::class, 'update_bilhete'])->name('carrinho.update');
+Route::delete('carrinho/bilhetes/{bilhete}', [CarrinhoController::class, 'destroy_bilhete'])->name('carrinho.bilhete.destroy');
+Route::delete('carrinho', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
+Route::post('carrinho', [CarrinhoController::class, 'store'])->name('carrinho.store');

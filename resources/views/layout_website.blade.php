@@ -351,7 +351,7 @@
                                             @if (auth()->user()->tipo != 'O')
                                                 <li>
 
-                                                    <a href="#" style="text-decoration:none"
+                                                    <a href="{{ route('user.show') }}" style="text-decoration:none"
                                                         class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         <span class="flex items-center justify-center text-lg">
                                                             <svg class="w-6 h-6" fill="none" stroke="currentColor"
