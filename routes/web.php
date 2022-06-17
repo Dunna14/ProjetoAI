@@ -184,6 +184,8 @@ Route::middleware(['auth', 'verified','bloqueado'])->prefix('admin')->name('admi
 });
 
 Route::get('users', [UserController::class, 'show'])->name('user.show');
+Route::get('users/edit', [UserController::class, 'edit_user'])->name('user.edit');
+Route::put('users/update', [FilmeController::class, 'update_user'])->name('user.update');
 
 Route::get('filmes', [FilmeController::class, 'index'])->name('filmes.index');
 Route::get('filmes/{filme}', [FilmeController::class, 'show'])->name('filmes.show');

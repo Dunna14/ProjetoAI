@@ -35,13 +35,38 @@ class UserController extends Controller
     }
 
     public function update_password(PasswordPost $request) {
-        auth()->user()->password = Hash::make($request->password);
-        auth()->user()->save();
-        return redirect()->route('admin.dashboard')
-        ->with('alert-msg', 'Password changed with success')
-        ->with('alert-type', 'success');
+        $user = auth()->user();
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('admin.users')
+            ->with('alert-msg', 'Senha alterada com sucesso!')
+            ->with('alert-type', 'success');
     }
 
+    public function edit(Request $request, User $user) {
+        return view('users.edit', compact('user'));
+    }
+
+    public function edit_user(Request $request) {
+        $user = auth()->user();
+        $user->fill($request->validated());
+        $user->save();
+
+        return redirect()->route('user.edit')
+            ->with('alert-msg', 'Perfil alterado com sucesso!')
+            ->with('alert-type', 'success');
+    }
+
+    public function update_user(Request $request) {
+        $user = auth()->user();
+        $user->fill($request->validated());
+        $user->save();
+
+        return redirect()->route('admin.users')
+            ->with('alert-msg', 'Usuário alterado com sucesso!')
+            ->with('alert-type', 'success');
+    }
 
     //Depois de criar um novo user -> Método store
     //$user -> sendEmailVerificationNotification();
