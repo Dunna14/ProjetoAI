@@ -24,13 +24,9 @@ class CarrinhoController extends Controller
         $carrinho[$bilhete->id] = [
             'id' => $bilhete->id,
             'qtd' => $qtd,
-            'nome' => $bilhete->sessoes->filmes->titulo,
-            'preco'=> $bilhete->preco_sem_iva,
-            'estado' => $bilhete->estado,
-            'data' => $bilhete->sessoes->data,
-            'fila' => $bilhete->lugar_id->fila,
-            'banco' => $bilhete->lugar_id->posicao,
-            'sala' => $bilhete->lugar_id->sala_id->nome
+            'sessao' => $bilhete->sessao_id,
+            'lugar' => $bilhete->lugar_id,
+            'filme' => $bilhete->filme_id
         ];
 
 
@@ -60,13 +56,9 @@ class CarrinhoController extends Controller
             $carrinho[$bilhete->id] = [
                 'id' => $bilhete->id,
                 'qtd' => $qtd,
-                'nome' => $bilhete->sessoes->filmes->titulo,
-                'preco'=> $bilhete->preco_sem_iva,
-                'estado' => $bilhete->estado,
-                'data' => $bilhete->sessoes->data,
-                'fila' => $bilhete->lugar_id->fila,
-                'banco' => $bilhete->lugar_id->posicao,
-                'sala' => $bilhete->lugar_id->sala_id->nome
+                'sessao' => $bilhete->sessao_id,
+                'lugar' => $bilhete->lugar_id,
+                'filme' => $bilhete->filme_id
             ];
         }
         $request->session()->put('carrinho', $carrinho);

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class SessaoController extends Controller
 {
-    public function admin_index(Request $request) {
+    public function admin(Request $request) {
         $sala = $request->sala ?? '';
         $filme = $request->filme ?? '';
 
@@ -22,8 +22,8 @@ class SessaoController extends Controller
         }
 
         $sessoes = $qry->paginate(10);
-        $salas = Sala::pluck('nome', 'code');
-        $filmes = Filme::pluck('nome', 'code');
+        $salas = Sala::pluck('nome');
+        $filmes = Filme::pluck('titulo', 'genero_code');
 
         return view('sessoes.admin', compact('filmes', 'salas', 'filme', 'sala'));
     }

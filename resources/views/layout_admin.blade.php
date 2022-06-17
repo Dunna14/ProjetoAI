@@ -70,7 +70,7 @@
 
 			<!-- Nav Item -->
             <li class="nav-item {{Route::currentRouteName()=='admin.sessoes'? 'active': ''}}">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('admin.sessoes')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Sessões</span></a>
                 </li>
@@ -87,6 +87,13 @@
                 <a class="nav-link" href="{{route('admin.salas')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Salas</span></a>
+                </li>
+
+             <!-- Nav Item -->
+             <li class="nav-item {{Route::currentRouteName()=='admin.lugares'? 'active': ''}}">
+                <a class="nav-link" href="{{route('admin.lugares')}}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Lugares</span></a>
                 </li>
 
             <!-- Divider -->

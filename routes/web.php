@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SalaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FilmeController;
+use App\Http\Controllers\LugarController;
 use App\Http\Controllers\GeneroController;
+use App\Http\Controllers\SessaoController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -114,7 +116,7 @@ Route::middleware(['auth', 'verified','bloqueado'])->prefix('admin')->name('admi
         ->middleware('can:delete,cliente');
 
     //Rotas de lugares
-    Route::get('lugares', [LugarController::class, 'admin_index'])->name('lugares')
+    Route::get('lugares', [LugarController::class, 'admin'])->name('lugares')
         ->middleware('can:viewAny,App\Models\Lugar');
     Route::get('lugares/{lugar}/edit', [LugarController::class, 'edit'])->name('lugares.edit')
         ->middleware('can:view,lugar');
@@ -128,7 +130,7 @@ Route::middleware(['auth', 'verified','bloqueado'])->prefix('admin')->name('admi
         ->middleware('can:delete,lugar');
 
     //Rotas de sessoes
-    Route::get('sessoes', [SessaoController::class, 'admin_index'])->name('sessoes')
+    Route::get('sessoes', [SessaoController::class, 'admin'])->name('sessoes')
         ->middleware('can:viewAny,App\Models\Sessao');
     Route::get('sessoes/{sessao}/edit', [SessaoController::class, 'edit'])->name('sessoes.edit')
         ->middleware('can:view,sessao');
