@@ -9,7 +9,7 @@
         <input type="hidden" name="posicao" value="{{$lugar->posicao}}">
         <div class="form-group text-right">
                 <button type="submit" class="btn btn-success" name="ok">Save</button>
-                <a href="{{route('admin.salas.edit', ['sala' => $sala]) }}" class="btn btn-secondary">Cancel</a>
+                <a href="{{route('admin.lugares.edit', ['lugar' => $lugar]) }}" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 @endsection

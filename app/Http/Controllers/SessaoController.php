@@ -25,7 +25,7 @@ class SessaoController extends Controller
         $salas = Sala::pluck('nome');
         $filmes = Filme::pluck('titulo', 'genero_code');
 
-        return view('sessoes.admin', compact('filmes', 'salas', 'filme', 'sala'));
+        return view('sessoes.admin', compact('filmes', 'salas', 'filme', 'sala', 'sessoes'));
     }
 
     public function edit(Request $request, Sessao $sessao) {
@@ -38,7 +38,7 @@ class SessaoController extends Controller
         $sessao = new Sessao();
         $salas = Sala::all();
         $filmes = Filme::all();
-        return view('sessoes.create', compact('filme', 'salas', 'filmes'));
+        return view('sessoes.create', compact('sessao', 'salas', 'filmes'));
     }
 
     public function store(Request $request) {

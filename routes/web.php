@@ -183,7 +183,7 @@ Route::middleware(['auth', 'verified','bloqueado'])->prefix('admin')->name('admi
 
 });
 
-Route::get('users/{user}', [UserController::class, 'show'])->name('user.show');
+Route::get('users', [UserController::class, 'show'])->name('user.show');
 
 Route::get('filmes', [FilmeController::class, 'index'])->name('filmes.index');
 Route::get('filmes/{filme}', [FilmeController::class, 'show'])->name('filmes.show');

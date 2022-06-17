@@ -1,15 +1,7 @@
 @extends('layout_website')
-@section('title', $users->name)
+@section('title', $user->name)
 
-@section('selectbar')
-    <select class="custom-select" name="genero" id="inputgenero" aria-label="Genero">
-        <option id="dropdown-button" value="" {{ '' == old('genero', $genero) ? 'selected' : '' }}>Todos Generos</option>
-        @foreach ($generos as $code => $nome)
-            <option value={{ $code }} {{ $code == old('genero', $genero) ? 'selected' : '' }}>
-                {{ $nome }}</option>
-        @endforeach
 
-    @endsection
 
     @section('content')
         <div class="movie-info bord-b border-white ml-8 mr-8">

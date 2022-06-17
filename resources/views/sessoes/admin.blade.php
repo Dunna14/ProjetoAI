@@ -1,33 +1,33 @@
 @extends('layout_admin')
-@section('title', 'Lugares')
+@section('title', 'Sessões')
 @section('content')
     <div class="row mb-3">
-        @can('create', App\Models\Lugar::class)
-            <a href="{{ route('admin.lugares.create') }}" class="btn btn-success" role="button" aria-pressed="true">Novo Lugar</a>
+        @can('create', App\Models\Sessao::class)
+            <a href="{{ route('admin.sessoes.create') }}" class="btn btn-success" role="button" aria-pressed="true">Nova Sessao</a>
         @endcan
     </div>
     <table class="table">
         <thead>
             <tr>
-                <th>Fila</th>
-                <th>Posição</th>
+                <th>Data</th>
+                <th>Hora Inicio</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($lugares as $lugar)
+            @foreach ($sessoes as $sessao)
                 <tr>
-                    <td>{{ $lugar->fila }}</td>
-                    <td>{{ $lugar->posicao }}</td>
+                    <td>{{ $sessao->data }}</td>
+                    <td>{{ $sessao->horario_inicio }}</td>
                     <td nowrap>
-                        @can('view', $lugar)
-                            <a href="{{ route('admin.lugares.edit', ['lugar' => $lugar]) }}" class="btn btn-primary btn-sm"
+                        @can('view', $sessao)
+                            <a href="{{ route('admin.sessoes.edit', ['sessao' => $sessao]) }}" class="btn btn-primary btn-sm"
                                 role="button" aria-pressed="true"><i class="fa fa-pen"></i></a>
                         @else
                             <span class="btn btn-secondary btn-sm disabled"><i class="fa fa-pen"></i></span>
                         @endcan
-                        @can('delete', $lugar)
-                        <form action="{{ route('admin.lugares.destroy', ['lugar' => $lugar]) }}" method="POST"
+                        @can('delete', $sessao)
+                        <form action="{{ route('admin.sessoes.destroy', ['sessao' => $sessao]) }}" method="POST"
                             class="d-inline" onsubmit="return confirm('Tem a certeza que deseja apagar o registo');">
                             @csrf
                             @method("DELETE")

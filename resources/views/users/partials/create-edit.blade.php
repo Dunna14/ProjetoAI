@@ -29,8 +29,8 @@
 
 <div class="form-group">
     <label for="inputFotoUrl">Foto</label>
-    <input type="text" class="form-control" name="foto_url" id="inputFotoUrl" value="{{ old('foto_url',$user->foto_url) }}" />
-    @error('trailer_url')
+    <input type="file" class="form-control" name="foto_url" id="inputFotoUrl" />
+    @error('foto_url')
     <div class="small text-danger"> {{$message}} </div>
     @enderror
 </div>

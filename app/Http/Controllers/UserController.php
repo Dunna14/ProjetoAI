@@ -24,9 +24,8 @@ class UserController extends Controller
 
     }
 
-    public function show(Request $request, User $user) {
-        $user = User::find($user->id);
-
+    public function show(Request $request) {
+        $user = auth()->user();
 
         return view('users.show', compact('user'));
     }
@@ -46,4 +45,21 @@ class UserController extends Controller
 
     //Depois de criar um novo user -> Método store
     //$user -> sendEmailVerificationNotification();
+
+    public function store(Request $request) {
+        $user = new User();
+        $user->fill($request->validated());
+
+        $user->save();
+        return redirect()->route('admin.users')
+            ->with('alert-msg', 'user "' . $user->name . '" foi criada com sucesso!')
+            ->with('alert-type', 'success');
+    }
+
+    public function create(Request $request) {
+        $user = new User();
+        //$user -> sendEmailVerificationNotification();
+
+        return view('users.create', compact('user'));
+    }
 }
