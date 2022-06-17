@@ -50,12 +50,10 @@ class UserController extends Controller
 
     public function edit_user(Request $request) {
         $user = auth()->user();
-        $user->fill($request->validated());
         $user->save();
 
-        return redirect()->route('user.edit')
-            ->with('alert-msg', 'Perfil alterado com sucesso!')
-            ->with('alert-type', 'success');
+        
+        return view('users.editYourProfile', compact('user'));
     }
 
     public function update_user(Request $request) {

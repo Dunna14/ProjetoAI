@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Filme;
 use App\Models\Genero;
 use App\Models\Sessao;
+use App\Models\Lugar;
+use App\Models\Sala;
+use App\Models\Bilhete;
 use Illuminate\Http\Request;
 use App\Http\Requests\FilmePost;
 use Illuminate\Support\Facades\Storage;
@@ -97,9 +100,24 @@ class FilmeController extends Controller
         $genero = $request->query('genero');
         $filme = Filme::find($filme->id);
         $sessoes = $filme->sessoes()->paginate(6);
-
-
+   
         return view('filmes.show', compact('filme', 'generos', 'genero','sessoes'));
+    }
+
+    
+    public function show_sessao(Request $request,Filme $filme, Sessao $sessao)
+    {
+        $generos = Genero::pluck('nome', 'code');
+        $genero = $request->query('genero');
+        $filme = Filme::find($filme->id);
+        $sessao = Sessao::find($sessao->id);
+        $sala = Sala::find($sessao->sala_id);
+        $lugares = Lugar::where('sala_id',$sessao->sala_id)->get();
+        $bilhetes = Bilhete::where('sessao_id',$sessao->id)->get();
+
+
+
+        return view('filmes.show_sessao', compact('filme', 'generos', 'genero','sessao','lugares','sala','bilhetes'));
     }
 
 

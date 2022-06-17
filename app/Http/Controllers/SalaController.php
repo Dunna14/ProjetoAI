@@ -11,7 +11,8 @@ class SalaController extends Controller
     //Metodo index() pode ou não ser preciso! -> VER
     public function index(){
         $salas = Sala::all();
-        return view('salas.index',compact('salas'));
+        $lugares = Lugar::all();
+        return view('salas.index',compact('salas','lugares'));
     }
     public function admin()
     {

@@ -14,6 +14,7 @@ class Sala extends Model
 
     protected $fillable = [
         'nome',
+        'sala_id'
     ];
 
     public function lugares() {

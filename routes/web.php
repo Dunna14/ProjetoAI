@@ -183,12 +183,13 @@ Route::middleware(['auth', 'verified','bloqueado'])->prefix('admin')->name('admi
 
 });
 
-Route::get('users', [UserController::class, 'show'])->name('user.show');
-Route::get('users/edit', [UserController::class, 'edit_user'])->name('user.edit');
-Route::put('users/update', [FilmeController::class, 'update_user'])->name('user.update');
+Route::get('user', [UserController::class, 'show'])->name('user.show');
+Route::get('user/edit', [UserController::class, 'edit_user'])->name('user.edit');
+Route::put('user/update', [UserController::class, 'update_user'])->name('user.update');
 
 Route::get('filmes', [FilmeController::class, 'index'])->name('filmes.index');
 Route::get('filmes/{filme}', [FilmeController::class, 'show'])->name('filmes.show');
+Route::get('filmes/{filme}/{sessao}', [FilmeController::class, 'show_sessao'])->name('filmes.show_sessao');
 
 Route::get('carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
 Route::post('carrinho/bilhetes/{bilhete}', [CarrinhoController::class, 'store_bilhete'])->name('carrinho.bilhete.store');
