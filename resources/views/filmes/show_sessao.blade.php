@@ -53,7 +53,7 @@
                                                     action="{{ route('carrinho.bilhete.store', ['sessao' => $sessao, 'lugar' => $lugar]) }}"
                                                     method="POST">
                                                     @csrf
-                                                    <input type="submit" value="Add"
+                                                    <input type="submit" value=""
                                                         class="w-12 h-12 m-2 text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm text-center"></input>
                                                 </form>
                                             </td>

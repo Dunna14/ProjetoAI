@@ -41,45 +41,40 @@
             <div >
                 <div class="form-group">
 
-                    <div class="row mb-3">
-                        <label for="old_password" class="col-md-4 col-form-label text-md-end">Password Antiga</label>
-
-                        <div class="col-md-6">
-                            <input id="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror" name="old_password" required">
+                    <div class="mb-3">
+                        <label for="old_password" class="block mb-1 text-xl font-medium text-gray-300">Password Antiga:</label>
+                            <input id="old_password" type="password" class="bg-gray-50 border border-gray-300 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="old_password" required">
 
                             @error('old_password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
+
                     </div>
 
-                    <div class="row mb-3">
-                        <label for="password" class="col-md-4 col-form-label text-md-end">Nova Password</label>
-                        <div class="col-md-6">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required">
+                    <div class="mb-3">
+                        <label for="password" class="block mb-1 text-xl font-medium text-gray-300">Nova Password:</label>
+ 
+                            <input id="password" type="password" class="bg-gray-50 border border-gray-300 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="password" required">
 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <label for="password_confirmation" class="col-md-4 col-form-label text-md-end">Confirmar Password</label>
-
-                        <div class="col-md-6">
-                            <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required">
+                    <div class="mb-3">
+                        <label for="password_confirmation" class="block mb-1 text-xl font-medium text-gray-300">Confirmar Password:</label>
+                            <input id="password_confirmation" type="password" class="bg-gray-50 border border-gray-300 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="password_confirmation" required">
 
                             @error('password_confirmation')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
+
                     </div>
 
                 </div>

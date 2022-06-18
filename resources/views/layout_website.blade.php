@@ -233,18 +233,7 @@
                         </span>
                         <span class="ml-3">Filmes</span>
                     </a>
-                    <a href="#"
-                        class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <span class="flex items-center justify-center text-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                        </span>
-                        <span class="ml-3">Sessoes</span>
-                    </a>
-                    <a href="#"
+                    <a href="{{route('carrinho.index')}}"
                         class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <span class="flex items-center justify-center text-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -280,9 +269,7 @@
                     class="form-group">
                     @yield('selectbar')
 
-                    <input autocomplete="off" type="search"
-                        class="text-sm text-gray-100 bg-gray-50 rounded-r-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder='Filme que pretende Procurar' style="min-width: 225px" />
+    </select>
                     <button type="submit"><span class="input-group-text border-0 bg-slate-800 text-gray-100"><i
                                 class="fas fa-search"></i></span></button>
                 </form>
@@ -292,16 +279,7 @@
                     <a class="nav-link me-3 me-lg-0" href="{{route('carrinho.index')}}" id="navbarDropdownMenuLink" role="button"
                         data-mdb-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-shopping-cart text-white"></i>
-
-                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
                     </a>
-
-
-
-
-
-
-
                     @guest
                         <li class="my-px">
                             <a href="{{ route('login') }}"
