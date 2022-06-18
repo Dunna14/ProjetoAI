@@ -114,10 +114,11 @@ class FilmeController extends Controller
         $sala = Sala::find($sessao->sala_id);
         $lugares = Lugar::where('sala_id',$sessao->sala_id)->get();
         $bilhetes = Bilhete::where('sessao_id',$sessao->id)->get();
+        $filas = Lugar::select('fila')->where('sala_id',$sessao->sala_id)->groupBy('fila')->get();
+        $colunas = Lugar::select('fila')->where('sala_id',$sessao->sala_id)->distinct()->count('posicao');
 
 
-
-        return view('filmes.show_sessao', compact('filme', 'generos', 'genero','sessao','lugares','sala','bilhetes'));
+        return view('filmes.show_sessao', compact('filme', 'generos', 'genero','sessao','lugares','sala','bilhetes','filas','colunas'));
     }
 
 
