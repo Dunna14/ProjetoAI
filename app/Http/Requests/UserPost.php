@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\VerifyPassword;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PasswordPost extends FormRequest
+class UserPost extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +24,8 @@ class PasswordPost extends FormRequest
     public function rules()
     {
         return [
-            'old_password' => ['sometimes'],
-            'password' => 'sometimes',
-            'password_confirmation' => 'sometimes'
+            "name" => "required",
+            "email" => "required",
         ];
     }
 }

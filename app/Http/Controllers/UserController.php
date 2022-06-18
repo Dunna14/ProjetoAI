@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\PasswordPost;
+use App\Http\Requests\UserPost;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -52,16 +53,29 @@ class UserController extends Controller
         $user = auth()->user();
         $user->save();
 
-        
+
         return view('users.editYourProfile', compact('user'));
     }
 
-    public function update_user(Request $request) {
+    public function update(UserPost $request, User $user)
+    {
+        $validated_data = $request->validated();
+        $user->fill($validated_data);
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('admin.users')
+            ->with('alert-msg', 'User "' . $user->name . '" foi alterado com sucesso!')
+            ->with('alert-type', 'success');
+    }
+
+    public function update_user(PasswordPost $request, UserPost $userPost) {
         $user = auth()->user();
-        $user->fill($request->validated());
+        $validated_data = $userPost->validated();
+        $user->fill($validated_data);
+        $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('admin.users')
+        return redirect()->route('user.show')
             ->with('alert-msg', 'Usuário alterado com sucesso!')
             ->with('alert-type', 'success');
     }
@@ -69,7 +83,7 @@ class UserController extends Controller
     //Depois de criar um novo user -> Método store
     //$user -> sendEmailVerificationNotification();
 
-    public function store(Request $request) {
+    public function store(UserPost $request) {
         $user = new User();
         $user->fill($request->validated());
 
