@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lugar;
+use App\Models\Sessao;
 use App\Models\Bilhete;
 use Illuminate\Http\Request;
 
@@ -16,17 +18,16 @@ class CarrinhoController extends Controller
 
 
 
-    public function store_bihete(Request $request, Bilhete $bilhete)
+    public function store_bilhete(Request $request, Sessao $sessao, Lugar $lugar)
     {
         $carrinho = $request->session()->get('carrinho', []);
-        $qtd = ($carrinho[$bilhete->id]['qtd'] ?? 0) + 1;
+        $qtd = ($carrinho[$sessao->id]['qtd'] ?? 0) + 1;
 
-        $carrinho[$bilhete->id] = [
-            'id' => $bilhete->id,
+        $carrinho[$sessao->id] = [
+            'id' => $sessao->id,
             'qtd' => $qtd,
-            'sessao' => $bilhete->sessao_id,
-            'lugar' => $bilhete->lugar_id,
-            'filme' => $bilhete->filme_id
+            'fila' => $lugar->fila,
+            'posicao' => $lugar->posicao
         ];
 
 
@@ -35,7 +36,7 @@ class CarrinhoController extends Controller
 
         $request->session()->put('carrinho', $carrinho);
         return back()
-            ->with('alert-msg', 'Foi adicionado o bilhete do filme "' . $bilhete->sessoes->filmes->titulo . '" ao carrinho! Quantidade de bilhetes = ' .  $qtd)
+            ->with('alert-msg', 'Foi adicionado a sessao "' . $sessao->id . '" ao carrinho! Quantidade de bilhetes = ' .  $qtd)
             ->with('alert-type', 'success');
     }
 
@@ -87,5 +88,16 @@ class CarrinhoController extends Controller
         return back()
             ->with('alert-msg', 'O carrinho já estava limpo!')
             ->with('alert-type', 'warning');
+    }
+
+    public function carrinho_show(Request $request, Bilhete $id)
+    {
+        $bilhete = Bilhete::find($id);
+        $user    = auth()->user();
+        $carrinho = $request->session()->get('carrinho', []);
+
+        if($bilhete):
+            return view('carrinho.index', compact('bilhete', 'user', 'carrinho'));
+        endif;
     }
 }

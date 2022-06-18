@@ -22,13 +22,9 @@
       <thead>
           <tr>
               <th>Quantity</th>
-              <th>Nome</th>
-              <th>Preco</th>
-              <th>Estado</th>
-              <th>Data</th>
-              <th>Fila</th>
-              <th>Banco</th>
-              <th>Sala</th>
+              <th>Sessao</th>
+              <th>Lugar</th>
+              <th>Lugar</th>
               <th></th>
               <th></th>
               <th></th>
@@ -38,13 +34,9 @@
       @foreach ($carrinho as $row)
       <tr>
           <td>{{ $row['qtd'] }} </td>
-          <td>{{ $row['nome'] }} </td>
-          <td>{{ $row['preco'] }} </td>
-          <td>{{ $row['estado'] }} </td>
-          <td>{{ $row['data'] }} </td>
-          <td>{{ $row['fila'] }} </td>
-          <td>{{ $row['banco'] }} </td>
-          <td>{{ $row['sala'] }} </td>
+          <td>{{ $row['sessao'] }} </td>
+          <td>{{ $row['lugar'] }} </td>
+          <td>{{ $row['filme'] }} </td>
           <td>
               <form action="{{route('carrinho.update_bilhete', $row['id'])}}" method="POST">
                   @csrf

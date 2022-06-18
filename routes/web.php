@@ -8,6 +8,7 @@ use App\Http\Controllers\FilmeController;
 use App\Http\Controllers\LugarController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\SessaoController;
+use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -192,8 +193,9 @@ Route::get('filmes/{filme}', [FilmeController::class, 'show'])->name('filmes.sho
 Route::get('filmes/{filme}/{sessao}', [FilmeController::class, 'show_sessao'])->name('filmes.show_sessao');
 
 Route::get('carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
-Route::post('carrinho/bilhetes/{bilhete}', [CarrinhoController::class, 'store_bilhete'])->name('carrinho.bilhete.store');
+Route::post('carrinho/{sessao}/{lugar}', [CarrinhoController::class, 'store_bilhete'])->name('carrinho.bilhete.store');
 Route::put('carrinho/bilhetes/{bilhete}', [CarrinhoController::class, 'update_bilhete'])->name('carrinho.update');
 Route::delete('carrinho/bilhetes/{bilhete}', [CarrinhoController::class, 'destroy_bilhete'])->name('carrinho.bilhete.destroy');
 Route::delete('carrinho', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
 Route::post('carrinho', [CarrinhoController::class, 'store'])->name('carrinho.store');
+Route::get('carrinho/show/{bilhete}', [CarrinhoController::class,'carrinho_show'])->name('carrinho.show');

@@ -289,7 +289,7 @@
                 <!-- Right links -->
                 <ul class="navbar-nav ms-auto d-flex flex-row">
                     <!-- Notification dropdown -->
-                    <a class="nav-link me-3 me-lg-0" href="#" id="navbarDropdownMenuLink" role="button"
+                    <a class="nav-link me-3 me-lg-0" href="{{route('carrinho.index')}}" id="navbarDropdownMenuLink" role="button"
                         data-mdb-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-shopping-cart text-white"></i>
 
