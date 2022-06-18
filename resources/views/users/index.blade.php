@@ -3,6 +3,8 @@
 @section('title', 'Users')
 
 @section('selectbar')
+<form class="d-md-flex input-group w-auto my-auto" method="GET" action="{{ route('filmes.index') }}"
+                    class="form-group">
 <select class="custom-select" name="genero" id="inputgenero" aria-label="Genero">
                         <option id="dropdown-button"value="" {{ '' == old('genero', $genero) ? 'selected' : '' }}>Todos Generos</option>
                         @foreach ($generos as $code =>$nome)
@@ -10,6 +12,9 @@
                                 {{ $nome }}</option>
                         @endforeach
                     </select>
+                    <button type="submit"><span class="input-group-text border-0 h-10 border-white bg-slate-800 text-gray-100"><i
+                                class="fas fa-search"></i></span></button>
+                </form>
 @endsection
 
 @section('content')
