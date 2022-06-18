@@ -21,10 +21,10 @@
   <table class="table table-bordered">
       <thead>
           <tr>
-              <th>Quantity</th>
-              <th>Sessao</th>
-              <th>Lugar</th>
-              <th>Lugar</th>
+              <th>Filme</th>
+              <th>Sala</th>
+              <th>Fila</th>
+              <th>Posição</th>
               <th></th>
               <th></th>
               <th></th>
@@ -33,12 +33,12 @@
       <tbody>
       @foreach ($carrinho as $row)
       <tr>
-          <td>{{ $row['qtd'] }} </td>
-          <td>{{ $row['sessao'] }} </td>
-          <td>{{ $row['lugar'] }} </td>
           <td>{{ $row['filme'] }} </td>
+          <td>{{ $row['sala'] }} </td>
+          <td>{{ $row['fila'] }} </td>
+          <td>{{ $row['posicao'] }} </td>
           <td>
-              <form action="{{route('carrinho.update_bilhete', $row['id'])}}" method="POST">
+              <form action="{{route('carrinho.update', $row['id'])}}" method="POST">
                   @csrf
                   @method('put')
                   <input type="hidden" name="quantidade" value="1">
@@ -46,7 +46,7 @@
               </form>
           </td>
           <td>
-              <form action="{{route('carrinho.update_bilhete', $row['id'])}}" method="POST">
+              <form action="{{route('carrinho.update', $row['id'])}}" method="POST">
                   @csrf
                   @method('put')
                   <input type="hidden" name="quantidade" value="-1">
@@ -54,12 +54,11 @@
               </form>
           </td>
           <td>
-              <form action="{{route('carrinho.destroy_bilhete', $row['id'])}}" method="POST">
+              <form action="{{route('carrinho.bilhete.destroy', $row['id'])}}" method="POST">
                   @csrf
                   @method('delete')
                   <input type="submit" value="Remove">
               </form>
-
           </td>
       </tr>
       @endforeach

@@ -21,50 +21,43 @@ class CarrinhoController extends Controller
     public function store_bilhete(Request $request, Sessao $sessao, Lugar $lugar)
     {
         $carrinho = $request->session()->get('carrinho', []);
-        $qtd = ($carrinho[$sessao->id]['qtd'] ?? 0) + 1;
 
-        $carrinho[$sessao->id] = [
+        $sessaoLugar = $sessao->id . $lugar->id;
+
+        $carrinho[$sessaoLugar] = [
             'id' => $sessao->id,
-            'qtd' => $qtd,
+            'filme' => $sessao->filme->titulo,
+            'sala' => $sessao->sala_id,
             'fila' => $lugar->fila,
             'posicao' => $lugar->posicao
         ];
-
 
         $tamanhoCarrinho = count($carrinho);
         $request->session()->put('tamanhoCarrinho', $tamanhoCarrinho);
 
         $request->session()->put('carrinho', $carrinho);
         return back()
-            ->with('alert-msg', 'Foi adicionado a sessao "' . $sessao->id . '" ao carrinho! Quantidade de bilhetes = ' .  $qtd)
+            ->with('alert-msg', 'Foi adicionado a sessao "' . $sessao->id . '" ao carrinho!')
             ->with('alert-type', 'success');
     }
 
-    public function update_carrinho(Request $request, Bilhete $bilhete) {
+    public function update_carrinho(Request $request, Sessao $sessao, Lugar $lugar) {
 
         $carrinho = $request->session()->get('carrinho', []);
-        $qtd = $carrinho[$bilhete->id]['qtd'] ?? 0;
-        $qtd += $request->quantidade;
-        if ($request->quantidade < 0) {
-            $msg = 'Foram removidas ' . -$request->quantidade . ' bilhetes ao carrinho com o filme: "' . $bilhete->sessoes->filmes->titulo . '"! Quantidade de bilhetes atuais = ' .  $qtd;
-        } elseif ($request->quantidade > 0) {
-            $msg = 'Foram adicionadas ' . $request->quantidade . ' bilhetes ao carrinho com o filme: "' . $bilhete->sessoes->filmes->titulo . '"! Quantidade de bilhetes atuais = ' .  $qtd;
-        }
-        if ($qtd <= 0) {
-            unset($carrinho[$bilhete->id]);
-            $msg = 'Foram removidas todos os bilhetes do carrinho "' . $bilhete->sessoes->filmes->titulo . '"';
-        } else {
-            $carrinho[$bilhete->id] = [
-                'id' => $bilhete->id,
-                'qtd' => $qtd,
-                'sessao' => $bilhete->sessao_id,
-                'lugar' => $bilhete->lugar_id,
-                'filme' => $bilhete->filme_id
-            ];
-        }
+
+        $sessaoLugar = $sessao->id . $lugar->id;
+
+        $carrinho[$sessaoLugar] = [
+            'id' => $sessao->id,
+            'filme' => $sessao->filme->titulo,
+            'sala' => $sessao->sala_id,
+            'fila' => $lugar->fila,
+            'posicao' => $lugar->posicao
+        ];
+
         $request->session()->put('carrinho', $carrinho);
         return back()
-            ->with('alert-msg', $msg)
+            ->with('alert-msg', "Atualizado com sucesso")
             ->with('alert-type', 'success');
     }
 
@@ -90,14 +83,14 @@ class CarrinhoController extends Controller
             ->with('alert-type', 'warning');
     }
 
-    public function carrinho_show(Request $request, Bilhete $id)
+    public function carrinho_show(Request $request, $id)
     {
-        $bilhete = Bilhete::find($id);
+        $sessao = Sessao::find($id);
         $user    = auth()->user();
         $carrinho = $request->session()->get('carrinho', []);
 
-        if($bilhete):
-            return view('carrinho.index', compact('bilhete', 'user', 'carrinho'));
+        if($sessao):
+            return view('carrinho.index', compact('sessao', 'user', 'carrinho'));
         endif;
     }
 }
