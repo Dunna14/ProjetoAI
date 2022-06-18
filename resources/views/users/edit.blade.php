@@ -7,7 +7,7 @@
         @method('PUT')
         @include('users.partials.create-edit')
         <div>
-            <img src="{{ asset($user->foto_url) }}">
+            <img src="{{ $user->foto_url ? asset('storage/fotos/' . $user->foto_url) : asset('img/default_img.png')  }}">
         </div>
         <div class="form-group text-right">
             <button type="submit" class="btn btn-success" name="ok">Save</button>
