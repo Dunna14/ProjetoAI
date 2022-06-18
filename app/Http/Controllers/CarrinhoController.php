@@ -22,7 +22,7 @@ class CarrinhoController extends Controller
     {
         $carrinho = $request->session()->get('carrinho', []);
 
-        $sessaoLugar = $sessao->id . $lugar->id;
+        $sessaoLugar = ($sessao->id . $lugar->id)*1000;
 
         $carrinho[$sessaoLugar] = [
             'id' => $sessao->id,
@@ -45,7 +45,7 @@ class CarrinhoController extends Controller
 
         $carrinho = $request->session()->get('carrinho', []);
 
-        $sessaoLugar = $sessao->id . $lugar->id;
+        $sessaoLugar = ($sessao->id . $lugar->id)*1000;
 
         $carrinho[$sessaoLugar] = [
             'id' => $sessao->id,
