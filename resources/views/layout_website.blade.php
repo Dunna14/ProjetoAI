@@ -210,7 +210,7 @@
 
 
                     <a href="{{ url('/') }}"
-                        class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300  hover:bg-orange-400 transition ease-out duration-500">
                         <span class="flex items-center justify-center text-lg">
                             <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
@@ -222,7 +222,7 @@
                     </a>
 
                     <a href="{{ route('filmes.index') }}"
-                        class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300 hover:bg-orange-400 transition ease-out duration-500">
                         <span class="flex items-center justify-center text-lg">
 
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -234,7 +234,7 @@
                         <span class="ml-3">Filmes</span>
                     </a>
                     <a href="{{route('carrinho.index')}}"
-                        class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300 focus:ring-blue-500  hover:bg-orange-400 transition ease-out duration-500">
                         <span class="flex items-center justify-center text-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -265,14 +265,9 @@
 
                 </a>
                 <!-- Search form -->
-                <form class="d-md-flex input-group w-auto my-auto" method="GET" action="{{ route('filmes.index') }}"
-                    class="form-group">
+
                     @yield('selectbar')
 
-    </select>
-                    <button type="submit"><span class="input-group-text border-0 bg-slate-800 text-gray-100"><i
-                                class="fas fa-search"></i></span></button>
-                </form>
                 <!-- Right links -->
                 <ul class="navbar-nav ms-auto d-flex flex-row">
                     <!-- Notification dropdown -->
