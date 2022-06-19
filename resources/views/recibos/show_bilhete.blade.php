@@ -9,6 +9,7 @@
     recibo_id:{{$bilhete->recibo_id}}
     sessao_id:{{$bilhete->sessao_id}}
     lugar_id:{{$bilhete->lugar_id}}
+    <a href="{{route('bilhete.downloadBilhetePDF', $bilhete)}}">download pfd</a>
     <br>
     @endforeach
 </a>

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
+use App\Models\Sala;
+use App\Models\User;
+use App\Models\Filme;
 use App\Models\Lugar;
 use App\Models\Recibo;
 use App\Models\Sessao;
@@ -62,8 +66,19 @@ class BilheteController extends Controller
 
     public function downloadBilhetePDF(Bilhete $bilhete)
     {
+        $sessao=Sessao::find($bilhete->sessao_id);
+        $filme=Filme::find($sessao->filme_id);
+        $recibo=Recibo::find($bilhete->recibo_id);
+        $sala=Sala::find($sessao->sala_id);
+        $lugar=Lugar::find($bilhete->lugar_id);
+        $cliente=Cliente::find($bilhete->cliente_id);
+        $user=User::find($cliente->id);
+        $pdf = PDF::loadView('bilhetes\pdf',compact('bilhete','filme','recibo','sala','sessao','lugar','cliente','user'));
+        return $pdf->download('invoice.pdf');
 
     }
+
+
     public function edit(Bilhete $bilhete)
     {
         $recibos = Recibo::all();

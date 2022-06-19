@@ -60,6 +60,8 @@ Route::middleware(['auth', 'verified','bloqueado'])->prefix('admin')->name('admi
            ->middleware('can:update,user');
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy')
            ->middleware('can:delete,user');
+    Route::post('users/{user}/editBloqueado', [UserController::class, 'edit_bloqueado'])->name('users.edit_bloeuqado')
+           ->middleware('can:view,user');
 
 
     //Rotas dos Generos
@@ -206,3 +208,8 @@ Route::post('bilheteira', [BilheteController::class, 'create'])->name('bilheteir
 
 Route::get('recibos/{user}', [ReciboController::class, 'show'])->name('recibos.show');
 Route::get('recibos/bilhetes/{recibo}', [ReciboController::class, 'show_bilhete'])->name('recibos.show_bilhete');
+
+Route::get('bilhete/{bilhete}',[BilheteController::class,'downloadBilhetePDF'])->name('bilhete.downloadBilhetePDF');
+
+Route::get('filmes/validar/{filme}', [FilmeController::class, 'show_validar'])->name('filmes.show_validar');
+
