@@ -15,66 +15,41 @@
     </head>
 
     <body>
-
-        <div class="flex items-center justify-center min-h-screen bg-gray-100 ">
+        <div class="flex items-center justify-center min-h-screen items-center align-center bg-gray-100 ">
             <div class="object-scale-down">
                 Nome: {{$user->name}}
                 <br>
-                <img class="h-20 rounded-full" src="{{ $user->foto_url ? asset('storage/fotos/' . $user->foto_url) : asset('img/default_img.png') }}">
+                <img class="h-20 mt-5  rounded-full" src="{{ $user->foto_url ? asset('storage/fotos/' . $user->foto_url) : asset('img/default_img.png') }}">
+
+                <img class="h-20 mt-5 ml-5" src="data:image/png;base64, {!! base64_encode(QrCode::size(200)->generate('http://projetoai.test/filmes/'.$filme->id.'/'.$sessao->id.'/'.$lugar->id)) !!}">
             </div>
             <div class="w-3/5 bg-white shadow-lg">
                 </div>
                 <div class="flex justify-center p-4">
                     <div class="border-b border-gray-200 shadow">
-                        <table class="">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-4 py-2 text-xs text-gray-500 ">
-                                        Id do bilhete
-                                    </th>
-                                    <th class="px-4 py-2 text-xs text-gray-500 ">
-                                        Filme
-                                    </th>
-                                    <th class="px-4 py-2 text-xs text-gray-500 ">
-                                        Sala
-                                    <th class="px-4 py-2 text-xs text-gray-500 ">
-                                        Data
-                                    </th>
-                                    <th class="px-4 py-2 text-xs text-gray-500 ">
-                                        Horario
-                                    </th>
-                                    <th class="px-4 py-2 text-xs text-gray-500 ">
-                                        Lugar
-                                    </th>
-                                </tr>
-                            </thead>
-
-                            <tbody class="bg-white">
-                                <tr class="whitespace-nowrap">
-                                    <td class="px-6 py-4 text-sm text-gray-500">
-                                        {{$bilhete->id}}
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500">
-                                        {{$filme->titulo}}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">
-                                            {{$sala->nome}}
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500">
-                                        {{$recibo->data}}
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500">
-                                        {{$sessao->horario_inicio}}
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500">
-                                        {{$lugar->fila}}-{{$lugar->posicao}}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                     
+                                    <p class="px-6 py-4 text-sm text-gray-500">
+                                    Id do bilhete: {{$bilhete->id}}
+                                    </p>
+                                    <p class="px-6 py-4 text-sm text-gray-500">
+                                    Filme: {{$filme->titulo}}
+                                    </p>
+                                    <p class="px-6 py-4">
+                    
+                                        Sala: {{$sala->nome}}
+                                    
+                                    </p>
+                                    <p class="px-6 py-4 text-sm text-gray-500">
+                                    Data: {{$recibo->data}}
+                                    </p>
+                                    <p class="px-6 py-4 text-sm text-gray-500">
+                                    Horario:  {{$sessao->horario_inicio}}
+                                    </p>
+                                    <p class="px-6 py-4 text-sm text-gray-500">
+                                    Lugar:  {{$lugar->fila}}-{{$lugar->posicao}}
+                                    </p>
                     </div>
                 </div>
+
             </div>
 </html>

@@ -73,8 +73,9 @@ class BilheteController extends Controller
         $lugar=Lugar::find($bilhete->lugar_id);
         $cliente=Cliente::find($bilhete->cliente_id);
         $user=User::find($cliente->id);
+
         $pdf = PDF::loadView('bilhetes\pdf',compact('bilhete','filme','recibo','sala','sessao','lugar','cliente','user'));
-        return $pdf->download('invoice.pdf');
+        return $pdf->download('bilhete.pdf');
 
     }
 
