@@ -49,7 +49,7 @@ class ReciboController extends Controller
     {
         $qry=Recibo::query();
         if($user){
-            $qry->where('cliente_id',$user->id);
+            $qry->where('cliente_id',$user->id)->orderBy('data', 'desc');
         }
         $recibos=$qry->paginate(50);
 

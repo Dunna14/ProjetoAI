@@ -196,6 +196,7 @@ Route::put('user/update', [UserController::class, 'update_user'])->name('user.up
 Route::get('filmes', [FilmeController::class, 'index'])->name('filmes.index');
 Route::get('filmes/{filme}', [FilmeController::class, 'show'])->name('filmes.show');
 Route::get('filmes/{filme}/{sessao}', [FilmeController::class, 'show_sessao'])->name('filmes.show_sessao');
+Route::post('filmes/{filme}/{sessao}/{lugar}', [FilmeController::class, 'show_validar'])->name('filmes.show_validar');
 
 Route::get('carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
 Route::post('carrinho/{sessao}/{lugar}', [CarrinhoController::class, 'store_bilhete'])->name('carrinho.bilhete.store');
@@ -212,5 +213,4 @@ Route::get('recibos/bilhetes/{recibo}', [ReciboController::class, 'show_bilhete'
 
 Route::get('bilhete/{bilhete}',[BilheteController::class,'downloadBilhetePDF'])->name('bilhete.downloadBilhetePDF');
 
-Route::get('filmes/validar/{filme}', [FilmeController::class, 'show_validar'])->name('filmes.show_validar');
 

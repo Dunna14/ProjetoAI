@@ -31,6 +31,11 @@
                         <span class="mx-1">Hora: {{ $sessao->horario_inicio }}</span>
 
                     </div>
+                    @if(Auth::user()->tipo == 'F' )
+                        <h2 class="text-4xl text-white font-semibold mb-2">Escolha o lugar para validar o bilhete:</h2>
+                        @else
+                        <h2 class="text-4xl text-white font-semibold mb-2">Escolha o seu lugar:</h2>
+                        @endif
                     <table class='mt-5'>
                         <thead>
                             <tr>
@@ -63,9 +68,30 @@
                                             </td>
                                         @elseif($i && $lugar->fila == $fila->fila)
                                             <th>
+                                                @if(Auth::user()->tipo == 'F' )
+                                                @php($j = false)
+                                                @foreach ($bilhetesinvalidos as $bilhetesInvalido)
+                                                    @if ($lugar->id == $bilhetesInvalido->lugar_id)
+                                                @php($j = true)
+                                                    @endif
+                                                 @endforeach
+                                                 @if (!$j)
+                                                <form
+                                                    action="{{ route('filmes.show_validar',['filme' => $filme,'sessao' => $sessao, 'lugar' => $lugar]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                <input type="submit" value=""
+                                                        class="w-12 h-12  m-2 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm text-center"></input>
+                                                </form>
+                                                @else
                                                 <button disabled type="button"
                                                     class="w-12 h-12 m-2  text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm"></button>
-                                            </th>
+                                                @endif
+                                                            @else
+                                                <button disabled type="button"
+                                                    class="w-12 h-12 m-2  text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm"></button>
+                                           @endif
+                                                </th>
                                         @endif
                                     @endforeach
                             @endforeach

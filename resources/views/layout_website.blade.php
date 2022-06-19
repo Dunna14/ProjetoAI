@@ -300,6 +300,7 @@
                                 <div class="ml-auto flex">
                                     <a id="dropdownDefault" data-dropdown-toggle="dropdown"
                                         class="flex flex-row items-center ">
+                                        
                                         <img src="{{ Auth::user()->foto_url ? asset('storage/fotos/' . Auth::user()->foto_url) : asset('img/default_img.png') }}"
                                             alt class="h-10 w-10 rounded-full border bg-gray-200" />
                                         <span class="ml-2 flex ">

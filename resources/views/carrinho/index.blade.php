@@ -1,41 +1,6 @@
 @extends('layout_website')
-
+@section('title', 'Carrinho')
 @section('content')
-    <div class="modal fade" id="payLogal" tabindex="-1" role="dialog" aria-labelledby="payLogal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-slate-800">
-
-                <div class="modal-body text-center">
-
-                    <h5 class="text-white" id="payLogal">Pretende proceder ao pagamento?</h5>
-
-                    <br>
-
-                    <div class="flex items-center justify-center">
-                        <form action="{{ route('bilheteira.create') }}" method="POST">
-                            @csrf
-                            @method('POST')
-                            <button type="submit"
-                                class="w-64 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Apagar</button>
-                        </form>
-
-                        <a type="button" data-dismiss="modal" style="text-decoration:none"
-                            class="flex h-10 flex-row items-center px-3 text-white bg-red-500 hover:bg-black transition ease-out duration-500">
-                            <span class="flex items-center justify-center text-lg">
-                                <svg class="w-6 h-6 flex items-center justify-center text-lg" fill="none"
-                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                            </span>
-                            <span class="ml-3 ">Nao</span>
-                        </a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="filme_sessoes border-b border-gray-400">
         <div class="container  mx-auto px-4 py-16">
@@ -80,20 +45,10 @@
                                     <div>
 
                                         @if (Auth::user())
-                                            @if(is_null(Auth::user()->cliente))
-                                            <a href="{{ route('user.edit') }}">
-                                                <button type="button"
-                                                    class="w-64 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                                                    Tem de configurar o cliente</button>
+                                            <a href="#" data-toggle="modal" data-target="#payLogal">
+                                            <button type="button"
+                                                    class="w-64 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Pagar</button>
                                             </a>
-                                            @else
-                                            <a href="#" data-toggle="modal" style="text-decoration:none"
-                                                class="w-64 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                                                data-target="#payLogal">
-                                                <span class="flex items-center justify-center text-lg"></span>
-                                                <span class="ml-3">Pagar</span>
-                                            </a>
-                                            @endif
                                         @endif
                                         @guest
                                             <a href="{{ route('login') }}">
@@ -102,7 +57,7 @@
                                                     de efetuar o login para proceder à compra</button>
                                             </a>
                                         @endguest
-                                        <p></p>
+                                        <p ></p>
 
                                         <a
                                             href="{{ route('filmes.show_sessao', ['filme' => $row['filme_id'], 'sessao' => $row['sessao']]) }}">
@@ -144,4 +99,33 @@
                     </form>
                 </span>
             </div>
+
+            <div class="modal fade" id="payLogal" tabindex="-1" role="dialog" aria-labelledby="payLogal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-slate-800">
+
+                <div class="modal-body text-center">
+
+                    <h5 class="text-white" id="payLogal">Pretende proceder ao pagamento?</h5>
+
+                    <br>
+
+                    <div class="flex items-center justify-center">
+                        <form action="{{ route('bilheteira.create') }}" method="POST">
+                            @csrf
+                            @method('POST')
+                            <button type="submit"
+                                class=" text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Sim</button>
+                        </form>
+
+                        <button data-dismiss="modal" type="submit"
+                                class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Nao</button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
         @endsection

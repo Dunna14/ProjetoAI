@@ -105,14 +105,16 @@ class FilmeController extends Controller
     }
 
 
-    public function show_validar(Request $request,Filme $filme)
+    public function show_validar(Request $request,Filme $filme, Sessao $sessao, Lugar $lugar)
     {
 
-        $filme = $filme->id;
+        $bilhete = Bilhete::where('sessao_id',$sessao->id)->where('lugar_id', $lugar->id)->get()->first();
 
-        $bilhetes = Bilhete::where('filme_id',$filme->id)->get();
-
-        return view('filmes.show_validar', compact('filme', 'bilhetes'));
+        if($bilhete->estado == 'não usado') {
+            $bilhete->estado = 'usado';
+            $bilhete->save();
+        }
+        return redirect()->route('filmes.show_sessao', compact('filme', 'sessao'));
     }
 
 
@@ -127,9 +129,9 @@ class FilmeController extends Controller
         $bilhetes = Bilhete::where('sessao_id',$sessao->id)->get();
         $filas = Lugar::select('fila')->where('sala_id',$sessao->sala_id)->groupBy('fila')->get();
         $colunas = Lugar::select('fila')->where('sala_id',$sessao->sala_id)->distinct()->count('posicao');
+        $bilhetesinvalidos = Bilhete::where('sessao_id',$sessao->id)->where('estado',"usado")->get();
 
-
-        return view('filmes.show_sessao', compact('filme', 'generos', 'genero','sessao','lugares','sala','bilhetes','filas','colunas'));
+        return view('filmes.show_sessao', compact('filme', 'generos', 'genero','sessao','lugares','sala','bilhetes','filas','colunas','bilhetesinvalidos'));
     }
 
 
