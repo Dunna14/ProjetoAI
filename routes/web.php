@@ -12,6 +12,7 @@ use App\Http\Controllers\SessaoController;
 use App\Http\Controllers\BilheteController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ConfiguracaoController;
 
 /*
 |--------------------------------------------------------------------------

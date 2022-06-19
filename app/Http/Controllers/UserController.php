@@ -53,9 +53,19 @@ class UserController extends Controller
         $user = auth()->user();
         $user->save();
 
-
         return view('users.editYourProfile', compact('user'));
     }
+
+
+    public function edit_bloqueado(Request $request, User $user) {
+        $user->bloqueado = !$user->bloqueado;
+        $user->save();
+
+        return redirect()->route('admin.users')
+        ->with('alert-msg', 'User "' . $user->name . '" foi alterado com sucesso!')
+            ->with('alert-type', 'success');
+    }
+
 
     public function update(UserPost $request, User $user)
     {

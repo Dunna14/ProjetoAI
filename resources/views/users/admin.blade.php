@@ -34,6 +34,7 @@
                 <th>Email</th>
                 <th>password</th>
                 <th>tipo</th>
+                <th>Bloqueado</th>
                 <th></th>
 
             </tr>
@@ -45,6 +46,7 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->password }}</td>
                     <td>{{ $user->tipo }}</td>
+                    <td>{{ $user->bloqueado }}</td>
 
                     <td nowrap>
                         @can('view', $user)
@@ -64,6 +66,17 @@
                         @else
                             <span class="btn btn-secondary btn-sm disabled"><i class="fa fa-trash"></i></span>
                         @endcan
+
+                        @if($user->tipo == 'A')
+                            <span class="btn btn-secondary btn-sm disabled"><i class="fa fa-{{$user->bloqueado == 1 ? "lock" : "unlock"}}"></i></span>
+
+                            @else
+                        <form action="{{ route('admin.users.edit_bloeuqado', ['user' => $user]) }}" method="POST"
+                            class='d-inline' onsubmit="return confirm('Tem a certeza que deseja alterar o registo?')">
+                            @csrf
+                            <button type="submit" class="btn btn-warning btn-sm"><i class="fas fa-lock"></i></button>
+                        </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach

@@ -100,11 +100,22 @@ class FilmeController extends Controller
         $genero = $request->query('genero');
         $filme = Filme::find($filme->id);
         $sessoes = $filme->sessoes()->paginate(6);
-   
+
         return view('filmes.show', compact('filme', 'generos', 'genero','sessoes'));
     }
 
-    
+
+    public function show_validar(Request $request,Filme $filme)
+    {
+
+        $filme = $filme->id;
+
+        $bilhetes = Bilhete::where('filme_id',$filme->id)->get();
+
+        return view('filmes.show_validar', compact('filme', 'bilhetes'));
+    }
+
+
     public function show_sessao(Request $request,Filme $filme, Sessao $sessao)
     {
         $generos = Genero::pluck('nome', 'code');
