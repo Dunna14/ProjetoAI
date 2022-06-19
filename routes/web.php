@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FilmeController;
 use App\Http\Controllers\LugarController;
 use App\Http\Controllers\GeneroController;
+use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\SessaoController;
 use App\Http\Controllers\BilheteController;
 use App\Http\Controllers\CarrinhoController;
@@ -202,3 +203,6 @@ Route::post('carrinho', [CarrinhoController::class, 'store'])->name('carrinho.st
 Route::get('carrinho/show/{bilhete}', [CarrinhoController::class,'carrinho_show'])->name('carrinho.show');
 
 Route::post('bilheteira', [BilheteController::class, 'create'])->name('bilheteira.create');
+
+Route::get('recibos/{user}', [ReciboController::class, 'show'])->name('recibos.show');
+Route::get('recibos/bilhetes/{recibo}', [ReciboController::class, 'show_bilhete'])->name('recibos.show_bilhete');

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Recibo;
+use App\Models\Bilhete;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReciboPost;
@@ -43,15 +45,28 @@ class ReciboController extends Controller
     }
 
 
-    public function show(Request $request, Recibo $recibo)
+    public function show(Request $request,User $user)
     {
-        $clientes = Cliente::pluck('nome', 'code');
-        $cliente = $request->query('cliente');
+        $qry=Recibo::query();
+        if($user){
+            $qry->where('cliente_id',$user->id);
+        }
+        $recibos=$qry->paginate(50);
 
-        $recibo = Recibo::find($recibo->id);
-        $clientes = $recibo->recibos()->paginate(6);
-
-
-        return view('filmes.show', compact('clientes', 'cliente', 'recibo'));
+        return view('recibos.show', compact('recibos', 'user'));
     }
+
+
+
+    public function show_bilhete(Request $request,Recibo $recibo)
+    {
+        $bilhetes=Bilhete::where('recibo_id',$recibo->id);
+
+        $bilhetes=$bilhetes->paginate(50);
+
+        return view('recibos.show_bilhete', compact('recibo', 'bilhetes'));
+    }
+
+
+
 }
