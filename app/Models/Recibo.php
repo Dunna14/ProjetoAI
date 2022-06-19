@@ -13,7 +13,12 @@ class Recibo extends Model
         'nif',
         'nome_cliente',
         'tipo_pagamento',
-        'ref_pagamento'
+        'ref_pagamento',
+        'cliente_id',
+        'data',
+        'preco_total_sem_iva',
+        'iva',
+        'preco_total_com_iva'
     ];
 
     public function Cliente() {

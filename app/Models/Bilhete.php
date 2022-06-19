@@ -11,7 +11,10 @@ class Bilhete extends Model
 
     protected $fillable = [
         'sessao_id',   //opcional
-        'lugar_id'     //opcional
+        'lugar_id',     //opcional
+        'recibo_id',
+        'cliente_id',
+        'preco_sem_iva'
     ];
 
     public function cliente() {

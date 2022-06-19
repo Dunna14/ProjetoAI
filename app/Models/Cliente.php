@@ -10,7 +10,7 @@ class Cliente extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'nif',

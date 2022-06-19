@@ -8,6 +8,7 @@ use App\Http\Controllers\FilmeController;
 use App\Http\Controllers\LugarController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\SessaoController;
+use App\Http\Controllers\BilheteController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\DashboardController;
 
@@ -103,7 +104,7 @@ Route::middleware(['auth', 'verified','bloqueado'])->prefix('admin')->name('admi
         ->middleware('can:delete,filme');
 
     //Rotas de clientes
-    Route::get('clientes', [ClienteController::class, 'admin_index'])->name('clientes')
+    /*Route::get('clientes', [ClienteController::class, 'admin_index'])->name('clientes')
         ->middleware('can:viewAny,App\Models\Cliente');
     Route::get('clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit')
         ->middleware('can:view,cliente');
@@ -115,7 +116,7 @@ Route::middleware(['auth', 'verified','bloqueado'])->prefix('admin')->name('admi
         ->middleware('can:update,cliente');
     Route::delete('clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy')
         ->middleware('can:delete,cliente');
-
+*/
     //Rotas de lugares
     Route::get('lugares', [LugarController::class, 'admin'])->name('lugares')
         ->middleware('can:viewAny,App\Models\Lugar');
@@ -199,3 +200,5 @@ Route::delete('carrinho/bilhetes/{bilhete}', [CarrinhoController::class, 'destro
 Route::delete('carrinho', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
 Route::post('carrinho', [CarrinhoController::class, 'store'])->name('carrinho.store');
 Route::get('carrinho/show/{bilhete}', [CarrinhoController::class,'carrinho_show'])->name('carrinho.show');
+
+Route::post('bilheteira', [BilheteController::class, 'create'])->name('bilheteira.create');

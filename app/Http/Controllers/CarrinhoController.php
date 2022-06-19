@@ -35,7 +35,8 @@ class CarrinhoController extends Controller
             'data' => $sessao->data,
             'sessao' => $sessao->id,
             'hora' => $sessao->horario_inicio,
-            'posicao' => $lugar->posicao
+            'posicao' => $lugar->posicao,
+            'lugar_id' => $lugar->id
         ];
 
         $tamanhoCarrinho = count($carrinho);
