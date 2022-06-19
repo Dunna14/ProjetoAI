@@ -31,10 +31,16 @@
                         <span class="mx-1">Hora: {{ $sessao->horario_inicio }}</span>
 
                     </div>
+                    @guest
+                    <h2 class="text-4xl text-white font-semibold mb-2">Escolha o seu lugar:</h2>
+                    @endguest
+                    @if(Auth::user()!= null )
+
                     @if(Auth::user()->tipo == 'F' )
                         <h2 class="text-4xl text-white font-semibold mb-2">Escolha o lugar para validar o bilhete:</h2>
                         @else
                         <h2 class="text-4xl text-white font-semibold mb-2">Escolha o seu lugar:</h2>
+                        @endif
                         @endif
                     <table class='mt-5'>
                         <thead>
@@ -68,6 +74,7 @@
                                             </td>
                                         @elseif($i && $lugar->fila == $fila->fila)
                                             <th>
+                                            @if(Auth::user() != null )
                                                 @if(Auth::user()->tipo == 'F' )
                                                 @php($j = false)
                                                 @foreach ($bilhetesinvalidos as $bilhetesInvalido)
@@ -91,6 +98,7 @@
                                                 <button disabled type="button"
                                                     class="w-12 h-12 m-2  text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm"></button>
                                            @endif
+                                        @endif
                                                 </th>
                                         @endif
                                     @endforeach
