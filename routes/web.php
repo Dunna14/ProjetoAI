@@ -10,6 +10,7 @@ use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\SessaoController;
 use App\Http\Controllers\BilheteController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ConfiguracaoController;
@@ -213,4 +214,5 @@ Route::get('recibos/bilhetes/{recibo}', [ReciboController::class, 'show_bilhete'
 
 Route::get('bilhete/{bilhete}',[BilheteController::class,'downloadBilhetePDF'])->name('bilhete.downloadBilhetePDF');
 
-
+Route::get('cliente/edit', [ClienteController::class, 'edit_cliente'])->name('clientes.edit_cliente');
+Route::put('cliente/update', [ClienteController::class, 'update_cliente'])->name('cliente.update');

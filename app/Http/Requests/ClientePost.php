@@ -13,7 +13,7 @@ class ClientePost extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class ClientePost extends FormRequest
     public function rules()
     {
         return [
-            'nif' => 'sometimes|unique|min:9|max:9'
+            'nif' => 'sometimes|min:9|max:9',
+            'ref_pagamento' => 'sometimes',
+            'tipo_pagamento' => 'sometimes'
         ];
     }
 }

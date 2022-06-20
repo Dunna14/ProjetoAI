@@ -23,7 +23,7 @@
                                     Preco
                                 </th>
                                 <th scope="col" class="text-center">
-                                    
+
                                 </th>
                             </tr>
                         </thead>
@@ -35,7 +35,7 @@
                                 {{$recibo->data}}
                                 </th>
                                 <td class="px-6 py-4">
-                                {{$recibo->tipo_pagamento}} 
+                                {{$recibo->tipo_pagamento}}
                                                             </td>
                                 <td class="px-6 py-4">
                                 {{$recibo->preco_total_com_iva}} €
@@ -50,10 +50,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    
+
                 </div>
                 @else
-                <p class="text-center text-white font-bold">Este filme nao tem sessoes 😔 !</p>
+                <p class="text-center text-white font-bold">Este user não possui recibos! :|</p>
                 @endif
             </div>
             {{$recibos->withQueryString()->links()}}

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
-use App\Http\Requests\PasswordPost;
 use App\Http\Requests\UserPost;
+use App\Http\Requests\ClientePost;
+use App\Http\Requests\PasswordPost;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -109,4 +111,5 @@ class UserController extends Controller
 
         return view('users.create', compact('user'));
     }
+
 }
