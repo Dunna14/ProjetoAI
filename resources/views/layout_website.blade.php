@@ -225,15 +225,15 @@
                         class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300 hover:bg-orange-400 transition ease-out duration-500">
                         <span class="flex items-center justify-center text-lg">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
                             </svg>
                         </span>
                         <span class="ml-3">Filmes</span>
                     </a>
-                    <a href="{{route('carrinho.index')}}"
+                    <a href="{{ route('carrinho.index') }}"
                         class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300 focus:ring-blue-500  hover:bg-orange-400 transition ease-out duration-500">
                         <span class="flex items-center justify-center text-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -266,13 +266,13 @@
                 </a>
                 <!-- Search form -->
 
-                    @yield('selectbar')
+                @yield('selectbar')
 
                 <!-- Right links -->
                 <ul class="navbar-nav ms-auto d-flex flex-row">
                     <!-- Notification dropdown -->
-                    <a class="nav-link me-3 me-lg-0" href="{{route('carrinho.index')}}" id="navbarDropdownMenuLink" role="button"
-                        data-mdb-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link me-3 me-lg-0" href="{{ route('carrinho.index') }}" id="navbarDropdownMenuLink"
+                        role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-shopping-cart text-white"></i>
                     </a>
                     @guest
@@ -300,7 +300,7 @@
                                 <div class="ml-auto flex">
                                     <a id="dropdownDefault" data-dropdown-toggle="dropdown"
                                         class="flex flex-row items-center ">
-                                        
+
                                         <img src="{{ Auth::user()->foto_url ? asset('storage/fotos/' . Auth::user()->foto_url) : asset('img/default_img.png') }}"
                                             alt class="h-10 w-10 rounded-full border bg-gray-200" />
                                         <span class="ml-2 flex ">
@@ -322,25 +322,25 @@
                                         <ul class="px-4 py-6 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="dropdownLargeButton">
 
-                                            @if (auth()->user()->tipo != 'O')
-                                                <li>
 
-                                                    <a href="{{ route('user.show') }}" style="text-decoration:none"
-                                                        class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                        <span class="flex items-center justify-center text-lg">
-                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                    stroke-width="2"
-                                                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
-                                                                </path>
-                                                            </svg>
-                                                        </span>
-                                                        <span class="ml-3">Perfil</span>
-                                                    </a>
+                                            <li>
 
-                                                </li>
-                                            @endif
+                                                <a href="{{ route('user.show') }}" style="text-decoration:none"
+                                                    class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    <span class="flex items-center justify-center text-lg">
+                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
+                                                            </path>
+                                                        </svg>
+                                                    </span>
+                                                    <span class="ml-3">Perfil</span>
+                                                </a>
+
+                                            </li>
+
                                             <li class="my-px">
                                                 <a href="#" data-toggle="modal" style="text-decoration:none"
                                                     class="flex h-10 flex-row items-center px-3 text-gray-100 bg-slate-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -380,16 +380,16 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
             </div>
             @if (session('alert-msg'))
-                        @include('partials.message')
-                    @endif
-                    @if ($errors->any())
-                        @include('partials.errors-message')
-                    @endif
-                    
+                @include('partials.message')
+            @endif
+            @if ($errors->any())
+                @include('partials.errors-message')
+            @endif
+
             @yield('content')
 
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content bg-slate-800">
 

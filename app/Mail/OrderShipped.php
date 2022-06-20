@@ -29,7 +29,7 @@ class OrderShipped extends Mailable
             ->view('emails.order.shipped')
             ->with([
                 'orderId' => 1,
-                'orderName' => 'Cona',
+                'orderName' => 'Pessoa',
                 'orderPrice' => 190.2,
             ])
             ->attachFromStorage('invoices/doc01.jpeg');
