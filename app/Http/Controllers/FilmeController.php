@@ -113,13 +113,8 @@ class FilmeController extends Controller
 
         
         $data = date('Y-m-d',strtotime('-5 minutes'));
-        $hora = date('H:i:s',strtotime('-5 minutes'));
 
-
-        $sessoes_id= Sessao::where('data', '>', $data)->where('filme_id', $filme->id)
-                            ->orwhere([['data', '=', $data],
-                              ['horario_inicio', '>=', $hora]])
-                              ->distinct()->pluck('id');
+        $sessoes_id= Sessao::where('filme_id', $filme->id)->where('data', '>=', $data) ->pluck('id');
 
         $sessoes = Sessao::whereIn('id', $sessoes_id);        
                       
