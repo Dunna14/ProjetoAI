@@ -13,6 +13,7 @@ use App\Http\Controllers\BilheteController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EstatisticaController;
 use App\Http\Controllers\ConfiguracaoController;
 
 /*
@@ -182,7 +183,8 @@ Route::middleware(['auth', 'verified','bloqueado'])->prefix('admin')->name('admi
         ->middleware('can:update,bilhete');
 
     //Rotas de Gestão de estatisticas
-    Route::get('estatisticas'   )->middleware('IsAdmin');
+    Route::get('estatisticas',[EstatisticaController::class,'graph'] )->name('estisticas')
+        ->middleware('IsAdmin');
 
     //Rotas do carrinho
 
