@@ -43,32 +43,6 @@
                                 <td class="w-80">
 
                                     <div>
-
-                                        @if (Auth::user())
-                                        @if(is_null(Auth::user()->cliente))
-                                            <a href="{{ route('user.edit') }}">
-                                                <button type="button"
-                                                    class="w-64 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                                                    Tem de configurar o cliente</button>
-                                            </a>
-                                            @else
-                                            <a href="#" data-toggle="modal" style="text-decoration:none"
-                                                class="w-64 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                                                data-target="#payLogal">
-                                                <span class="flex items-center justify-center text-lg"></span>
-                                                <span class="ml-3">Pagar</span>
-                                            </a>
-                                            @endif
-                                        @endif
-                                        @guest
-                                            <a href="{{ route('login') }}">
-                                                <button type="button"
-                                                    class="w-64 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Tem
-                                                    de efetuar o login para proceder à compra</button>
-                                            </a>
-                                        @endguest
-                                        <p ></p>
-
                                         <a
                                             href="{{ route('filmes.show_sessao', ['filme' => $row['filme_id'], 'sessao' => $row['sessao']]) }}">
                                             <button type="submit"
@@ -88,27 +62,44 @@
                             </tr>
                         @endforeach
                     </tbody>
+<tfooter>
+<div class="sm:flex text-gray-400 mt-2">
 
+<span class="mx-1 hover:text-orange-300 transition ease-out duration-500">
+    <form action="{{ route('carrinho.destroy') }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <input type="submit" value="Apagar carrinho">
+    </form>
+</span>
+</div>
+</tfooter>
                 </table>
 
             </div>
-            <div class="sm:flex text-gray-400 mt-2">
-
-                <span class="mx-1 hover:text-orange-300 transition ease-out duration-500">
-                    <form action="{{ route('carrinho.destroy') }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <input type="submit" value="Apagar carrinho">
-                    </form>
-                </span>
-                <span class="mx-2">|</span>
-                <span class="mx-1 hover:text-orange-300 transition ease-out duration-500">
-                    <form action="{{ route('carrinho.store') }}" method="POST">
-                        @csrf
-                        <input type="submit" value="Confirmar carrinho">
-                    </form>
-                </span>
-            </div>
+            
+            @if (Auth::user())
+                                        @if(is_null(Auth::user()->cliente))
+                                            <a href="{{ route('user.edit') }}">
+                                                <button type="button"
+                                                    class="w-64 mt-6 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                                    Tem de configurar o cliente</button>
+                                            </a>
+                                            @else
+                                            <a href="#" data-toggle="modal" data-target="#payLogal">            
+                                            <button type="button"
+                                                    class="w-64 mt-6 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                                    Pagar</button>
+                                            </a>
+                                            @endif
+                                        @endif
+                                        @guest
+                                            <a href="{{ route('login') }}">
+                                                <button type="button"
+                                                    class="w-64 mt-6 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Tem
+                                                    de efetuar o login para proceder à compra</button>
+                                            </a>
+                                        @endguest
 
             <div class="modal fade" id="payLogal" tabindex="-1" role="dialog" aria-labelledby="payLogal" aria-hidden="true">
         <div class="modal-dialog" role="document">

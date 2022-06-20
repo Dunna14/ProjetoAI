@@ -379,6 +379,13 @@
         <div class="container pt-4">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
             </div>
+            @if (session('alert-msg'))
+                        @include('partials.message')
+                    @endif
+                    @if ($errors->any())
+                        @include('partials.errors-message')
+                    @endif
+                    
             @yield('content')
 
             <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

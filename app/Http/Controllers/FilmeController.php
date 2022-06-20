@@ -33,9 +33,20 @@ class FilmeController extends Controller
         $generos = Genero::pluck('nome', 'code');
         $genero = $request->query('genero');
         $titulo = $request->titulo ?? '';
-        $filmes = Filme::query();
 
+        
 
+        $data = date('Y-m-d');
+        $hora = date('H:i:s');
+
+        $filmes_id = Sessao::where('data', '>', $data)
+                            ->orwhere([['data', '=', $data],
+                              ['horario_inicio', '>=', $hora]])
+                              ->distinct()->pluck('filme_id');
+
+                
+        $filmes = Filme::whereIn('id', $filmes_id);        
+                            
         if ($genero){
           $filmes = $filmes->where('genero_code', $genero);
         }
@@ -99,7 +110,20 @@ class FilmeController extends Controller
         $generos = Genero::pluck('nome', 'code');
         $genero = $request->query('genero');
         $filme = Filme::find($filme->id);
-        $sessoes = $filme->sessoes()->paginate(6);
+
+        
+        $data = date('Y-m-d');
+        $hora = date('H:i:s');
+
+
+        $sessoes_id= Sessao::where('data', '>', $data)->where('filme_id', $filme->id)
+                            ->orwhere([['data', '=', $data],
+                              ['horario_inicio', '>=', $hora]])
+                              ->distinct()->pluck('id');
+
+        $sessoes = Sessao::whereIn('id', $sessoes_id);        
+                      
+        $sessoes = $sessoes->paginate(6);
 
         return view('filmes.show', compact('filme', 'generos', 'genero','sessoes'));
     }
