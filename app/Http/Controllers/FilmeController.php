@@ -113,6 +113,8 @@ class FilmeController extends Controller
 
         
         $data = date('Y-m-d',strtotime('-5 minutes'));
+        $hora = date('H:i:s',strtotime('-5 minutes'));
+
 
         $sessoes_id= Sessao::where('filme_id', $filme->id)->where('data', '>=', $data) ->pluck('id');
 
